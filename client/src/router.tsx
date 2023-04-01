@@ -4,6 +4,7 @@ import { AuthProvider } from "./context/AuthContext";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/home";
 import SignIn from "./pages/SignIn";
+import ContactUs from "./pages/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
           { index: true, element: <Home /> },
           { path: "signup", element: <SignUp /> },
           { path: "signin", element: <SignIn /> },
+          { path: "contact", element: <ContactUs /> },
         ],
       },
     ],

@@ -7,7 +7,6 @@ import Logo from "/images/Logo.svg";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
-
   const hamburgerMenu = () => {
     setHamburger(!hamburger);
   };
@@ -32,7 +31,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 py-6 px-12 bg-black text-white">
+    /* TODO: Opravit navbar */
+    <nav className="fixed top-0 left-0 right-0 z-50 py-6 px-12 text-white bg-black">
       <div className="flex items-center justify-between">
         <Link to="/">
           <img src={Logo} alt="MMA gym logo" className="w-16 h-auto" />
@@ -61,7 +61,6 @@ const Navbar = () => {
           <Link
             to="/contact"
             className="hidden md:flex items-center gap-2 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:text-secondary hover:border-secondary  lg:mt-0"
-            onClick={hamburgerMenu}
           >
             <MdAddCircleOutline className="text-3xl text-secondary hover:rotate-[360deg] hover:duration-1000 " />
             <h3>Join Class Now</h3>
