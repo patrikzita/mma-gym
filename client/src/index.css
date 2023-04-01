@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-section {
+    background-position: center center;
+    background-size: cover;
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.about-section {
+    background-image: url("/images/bg-about.jpg");
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center center;
+}
+
+.about-image {
+    width: 100%;
+    max-width: 600px;
+}
+
+.card-item {
+    min-height: 15rem;
+    transition: all 0.3s;
+}
+
+.card-item:hover {
+    background-image: url("/images/1.jpg");
+    background-size: cover;
+}
+
+.trainers-section {
+    background-image: url("/images/black-bg-trainers.jpg");
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center center;
+}
+
+.box-desc::after {
+    content: "";
+    width: 100px;
+    height: 4px;
+    background-color: #F17B19;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 49;
+    transition: all .4s ease-in-out;
+}
+
+.box-desc:hover:after {
+    content: "";
+    width: 100%;
+    height: 4px;
+}
+
+
+@media only screen and (max-width: 640px) {
+    .hero-section {
+        background-color: black;
+        height: 80vh;
+    }
+}
+
+@media only screen and (min-width: 640px) {
+    .hero-section {
+        background-image: url("/images/hero.jpg");
+    }
+}
