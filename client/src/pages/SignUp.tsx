@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { BsFacebook, BsLinkedin, BsTwitter } from "react-icons/bs";
-import IMG from "/images/signup-image.jpg";
+import IMG from "/images/signup-image.png";
 import { Link } from "react-router-dom";
 
 const Schema = z.object({
@@ -28,8 +28,8 @@ const SignUp = () => {
   });
   return (
     <main className="flex justify-center mt-32 mb-32 h-1000">
-      <div className="w-6/12 bg-gray-100 p-10 h-fit flex gap-8 border-4">
-        <img src={IMG} alt="" style={{ width: "300px" }} />
+      <div className=" bg-gray-100 p-10 h-fit w-fit gap-16 flex gap-8 border-4">
+        <img src={IMG} alt="" className="w-96" />
         <form>
           <div className="flex flex-row items-center justify-center lg:justify-start">
             <p className="mb-0 mr-4 text-lg font-medium">Sign up with</p>
