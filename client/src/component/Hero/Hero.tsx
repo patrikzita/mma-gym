@@ -1,6 +1,8 @@
 import { MdArrowForward } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <>
       <section className="hero-section flex justify-center md:justify-end">
@@ -11,7 +13,7 @@ const Hero = () => {
               with our <span className="text-secondary">world-class</span> MMA
               training and become the ultimate fighter.
             </p>
-            <button className="text-white mx-auto bg-secondary hover:bg-secondary/80 rounded-lg text-lg px-5 py-2.5 inline-flex items-center gap-3 self-start">
+            <button onClick={()=> navigate("/contact")} className="text-white mx-auto bg-secondary hover:bg-secondary/80 rounded-lg text-lg px-5 py-2.5 inline-flex items-center gap-3 self-start">
               JOIN CLASS NOW
               <MdArrowForward />
             </button>

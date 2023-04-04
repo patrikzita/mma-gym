@@ -5,8 +5,11 @@ import {
   MdSportsGymnastics,
 } from "react-icons/md";
 import AboutCard from "./AboutCard";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
+
   const cardList = [
     {
       title: "Progression",
@@ -30,7 +33,7 @@ const About = () => {
 
   return (
     <section className="about-section py-5 relative">
-      <div className="flex flex-col justify-center px-5 gap-1 lg:gap-10 block lg:flex-row lg:absolute top-0 lg:-top-40 w-full">
+      <div className="flex flex-col justify-center px-5 gap-1 lg:gap-10 lg:flex-row lg:absolute top-0 lg:-top-40 w-full">
         {cardList.map((card) => (
           <AboutCard
             key={card.title}
@@ -75,7 +78,7 @@ const About = () => {
                 </h1>
               </div>
             </div>
-            <button className="text-white bg-primary hover:bg-secondary rounded-lg text-lg px-5 py-2.5 inline-flex items-center gap-3 self-center lg:self-start mt-6">
+            <button onClick={()=>navigate("/contact")} className="text-white bg-primary hover:bg-secondary rounded-lg text-lg px-5 py-2.5 inline-flex items-center gap-3 self-center lg:self-start mt-6">
               JOIN CLASS NOW
               <MdArrowForward />
             </button>

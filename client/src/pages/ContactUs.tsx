@@ -1,14 +1,11 @@
+import { SubHeader } from "../component/Header/SubHeader";
 import IMG from "/images/bg-section.jpg";
 
 const ContactUs = () => {
   return (
     <main className="mt-20">
-      <div className="general-bg flex items-center ">
-        <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold text-slate-50 ml-8">
-          Contact us
-        </h1>
-      </div>
-      <div className="flex flex-col gap-y-5 lg:gap-x-10 px-0 md:px-16 lg:px-32 mt-6 lg:flex-row">
+      <SubHeader title="Contact Us" />
+      <div className="flex flex-col gap-y-5 lg:gap-x-10 px-4 md:px-16 lg:px-32 mt-6 lg:flex-row">
         <div className="flex items-center flex-1">
           <div>
             <h1 className="text-3xl lg:text-5xl font-bold">
