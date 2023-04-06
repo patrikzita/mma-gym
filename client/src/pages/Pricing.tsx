@@ -1,14 +1,16 @@
+import { MdArrowForward } from "react-icons/md";
 import { SubHeader } from "../component/Header/SubHeader";
+import { formatCurrency } from "../utilities/formatCurrency";
 
 const PRICING_BOXES = [
   {
     level: "Free",
-    price: "0.00",
+    price: 0.0,
     benefits: ["Educative material", "1 lesson", "Access to community forum"],
   },
   {
     level: "Pro",
-    price: "18.99",
+    price: 18.99,
     benefits: [
       "Unlimited lessons",
       "Advanced techniques",
@@ -20,7 +22,7 @@ const PRICING_BOXES = [
   },
   {
     level: "Premium Pro",
-    price: "24.99",
+    price: 24.99,
     benefits: [
       "All Pro benefits",
       "Personalized training plan",
@@ -34,17 +36,28 @@ const PRICING_BOXES = [
 
 type PricingCardProsp = {
   level: string;
-  price: string;
+  price: number;
   benefits: string[];
 };
 const PricingCard = ({ level, price, benefits }: PricingCardProsp) => {
   return (
-    <div className="flex flex-col p-5 border-2">
+    <div className="flex flex-col border-2 gap-4 pb-4 w-3/4 drop-shadow-md">
+      <img
+        src="/images/bg-pricing.jpg"
+        alt="Lifting dumbbell"
+        className="h-1/5 md:h-64 grayscale hover:grayscale-0 transitation duration-500 hover:ease-in-out"
+      />
       <h1 className="text-2xl font-bold">{level}</h1>
-      <h2 className="text-3xl font-bold">${price}</h2>
-      {benefits.map((benefit) => (
-        <p>{benefit}</p>
-      ))}
+      <div className="flex-grow flex flex-col gap-y-2">
+        {benefits.map((benefit) => (
+          <p>{benefit}</p>
+        ))}
+      </div>
+      <h2 className="text-3xl font-bold">{formatCurrency(price, "USD")} p/m</h2>
+      <button className="text-white mx-auto bg-secondary hover:bg-secondary/80 rounded-lg text-lg px-5 py-2.5 inline-flex items-center gap-3 self-start uppercase">
+        buy now
+        <MdArrowForward />
+      </button>
     </div>
   );
 };
@@ -57,12 +70,12 @@ export const Pricing = () => {
       <SubHeader title="Pricing" />
       <div className="flex justify-center mt-12">
         <div className="text-center">
-          <h1 className="text-3xl lg:text-5xl font-bold">Exclusive Pricing</h1>
-          <p className="text-gray-700">
+          <h1 className="text-3xl lg:text-5xl font-bold ">Exclusive Pricing</h1>
+          <p className="text-gray-700 w-4/5 mx-auto">
             Gymat an unknown printer took a galley of type and scrambled make a
             type specimen book.
           </p>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center md:items-stretch  md:flex-row gap-4 mt-5">
             {PRICING_BOXES.map((item) => (
               <PricingCard key={item.level} {...item} />
             ))}
