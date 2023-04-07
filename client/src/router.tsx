@@ -7,6 +7,7 @@ import SignIn from "./pages/SignIn";
 import ContactUs from "./pages/ContactUs";
 import { Pricing } from "./pages/Pricing";
 import { Schedule } from "./pages/Schedule";
+import { Merch } from "./pages/Merch";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
           { path: "contact", element: <ContactUs /> },
           { path: "pricing", element: <Pricing /> },
           { path: "schedule", element: <Schedule /> },
+          { path: "merch", element: <Merch /> },
         ],
       },
     ],

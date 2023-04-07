@@ -222,7 +222,6 @@ const TimeSlot = ({ className, start, end, trainer }: TimeSlotProps) => {
   );
 };
 
-/* TODO: Responsivní celá stránka */
 export const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState("Monday");
 
