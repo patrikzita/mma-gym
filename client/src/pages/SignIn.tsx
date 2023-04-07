@@ -28,7 +28,7 @@ const SignIn = () => {
   });
   return (
     <main className="flex justify-center mt-32 mb-32 h-1000">
-      <div className="w-fit bg-gray-100 p-10 h-fit flex gap-16 border-4">
+      <div className="w-fit bg-gray-100 p-10 h-fit flex flex-col md:flex-row gap-16 border-4">
         <img src={IMG} alt="" className="w-96" />
         <form>
           <div className="flex flex-row items-center justify-center lg:justify-start">
