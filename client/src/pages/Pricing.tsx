@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const PRICING_BOXES = [
   {
     level: "Free",
-    price: 0.0,
+    price: 0,
     benefits: ["Educative material", "1 lesson", "Access to community forum"],
   },
   {
@@ -55,7 +55,13 @@ const PricingCard = ({ level, price, benefits }: PricingCardProsp) => {
           <p key={benefit}>{benefit}</p>
         ))}
       </div>
-      <h2 className="text-3xl font-bold">{formatCurrency(price, "USD")} p/m</h2>
+      {price !== 0 ? (
+        <h2 className="text-3xl font-bold">
+          {formatCurrency(price, "USD")} p/m
+        </h2>
+      ) : (
+        <h2 className="text-3xl font-bold">Free</h2>
+      )}
       <button
         onClick={() => navigate("/contact")}
         className="text-white mx-auto bg-secondary hover:bg-secondary/80 rounded-lg text-lg px-5 py-2.5 inline-flex items-center gap-3 self-start uppercase"

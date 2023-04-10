@@ -8,6 +8,7 @@ import ContactUs from "./pages/ContactUs";
 import { Pricing } from "./pages/Pricing";
 import { Schedule } from "./pages/Schedule";
 import { Merch } from "./pages/Merch";
+import ProductDetails from "./component/Products/ProductDetails";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
           { path: "pricing", element: <Pricing /> },
           { path: "schedule", element: <Schedule /> },
           { path: "merch", element: <Merch /> },
+          { path: "merch/:id", element: <ProductDetails /> },
         ],
       },
     ],
