@@ -23,7 +23,10 @@ const Footer = () => {
           </div>
           <p className="text-center">
             Privacy Policy | © {new Date().getFullYear()} MMA GYM |{" "}
-            <a href="https://www.radiustheme.com/"> Design by RadiusTheme</a>{" "}
+            <a href="https://www.radiustheme.com/">
+              {" "}
+              Inspiration by RadiusTheme
+            </a>{" "}
           </p>
         </div>
         <div className="text-center lg:flex-1">

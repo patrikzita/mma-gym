@@ -165,22 +165,18 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
   );
 };
 
-/* TODO: Dodělat filtr */
 export const Merch = () => {
   const [query, setQuery] = useState("");
-  const keys = ["name", "category"];
 
   const search = (data: ProductType[]) => {
     return data.filter((item) => item.name.toLowerCase().includes(query));
   };
 
-  console.log(search(PRODUCTS));
-
   return (
     <main>
       <SubHeader title="Merch" />
       <div className="container flex justify-center mx-auto">
-        <div className="flex border-2 rounded-2xl w-3/5 mt-5">
+        <div className="flex border-2 rounded-2xl w-full mx-2 md:w-3/5 mt-5">
           <div className="flex items-center justify-center px-4 border-r ">
             <AiOutlineSearch />
           </div>
