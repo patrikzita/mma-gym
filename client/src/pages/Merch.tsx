@@ -2,6 +2,19 @@ import { MdShoppingCart } from "react-icons/md";
 import { SubHeader } from "../component/Header/SubHeader";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
+
+type ProductType = {
+  id: string;
+  name: string;
+  img: string;
+  imgBig: string;
+  price: number;
+  quantity: number;
+  category: string;
+  description: string;
+};
 
 export const PRODUCTS = [
   {
@@ -152,12 +165,35 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
   );
 };
 
+/* TODO: Dodělat filtr */
 export const Merch = () => {
+  const [query, setQuery] = useState("");
+  const keys = ["name", "category"];
+
+  const search = (data: ProductType[]) => {
+    return data.filter((item) => item.name.toLowerCase().includes(query));
+  };
+
+  console.log(search(PRODUCTS));
+
   return (
     <main>
       <SubHeader title="Merch" />
+      <div className="container flex justify-center mx-auto">
+        <div className="flex border-2 rounded-2xl w-3/5 mt-5">
+          <div className="flex items-center justify-center px-4 border-r ">
+            <AiOutlineSearch />
+          </div>
+          <input
+            type="text"
+            className=" w-full border-0 rounded-r-2xl outline-0"
+            placeholder="Search..."
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-5 my-32 just">
-        {PRODUCTS.map((product) => (
+        {search(PRODUCTS).map((product) => (
           <ProductCard
             key={product.id}
             id={product.id}
