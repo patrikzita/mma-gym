@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 import NavLayout from "./NavLayout";
 import { AuthProvider } from "./context/AuthContext";
 import { lazy, Suspense } from "react";
+import Loading from "./component/Loading";
 
 const Home = lazy(() => {
   return import("./pages/home");
@@ -53,7 +54,7 @@ export const router = createBrowserRouter([
 function ContextWrapper() {
   return (
     <AuthProvider>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         <Outlet />
       </Suspense>
     </AuthProvider>
