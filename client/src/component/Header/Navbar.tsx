@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { FaUserAlt } from "react-icons/fa";
+import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdAddCircleOutline, MdClose } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Logo from "/images/Logo.svg";
+import { AiFillShopping } from "react-icons/ai";
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
@@ -36,7 +37,6 @@ const Navbar = () => {
   ];
 
   return (
-    
     <nav className="fixed top-0 left-0 right-0 z-50 py-6 px-12 text-white bg-black">
       <div className="flex items-center justify-between">
         <Link to="/" onClick={scrollToTop}>
@@ -57,14 +57,21 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex gap-5 items-center">
-          <Link
-            to="/signin"
-            className="inline-block text-lg px-4 py-2 leading-none text-white hover:text-secondary  lg:mt-0"
-            onClick={scrollToTop}
-          >
-            <FaUserAlt />
-          </Link>
-
+          <div>
+            <div
+              className="inline-block cursor-pointer text-lg px-4 py-2 leading-none text-white hover:text-secondary lg:mt-0"
+              onClick={scrollToTop}
+            >
+              <FaShoppingBag />
+            </div>
+            <Link
+              to="/signin"
+              className="inline-block text-lg px-4 py-2 leading-none text-white hover:text-secondary  lg:mt-0"
+              onClick={scrollToTop}
+            >
+              <FaUserAlt />
+            </Link>
+          </div>
           <Link
             to="/contact"
             className="hidden md:flex items-center gap-2 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:text-secondary hover:border-secondary  lg:mt-0"
