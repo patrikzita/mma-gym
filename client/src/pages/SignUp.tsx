@@ -27,8 +27,8 @@ const SignUp = () => {
     validationSchema: toFormikValidationSchema(Schema),
   });
   return (
-    <main className="flex justify-center mt-32 mb-32 h-1000">
-      <div className=" bg-gray-100 p-10 h-fit w-fit gap-16 flex flex-col md:flex-row  border-4">
+    <main className="flex bg-gray-100 lg:bg-white justify-center pt-32 mb-32 h-1000">
+      <div className="w-fit pb-10 px-5 bg-gray-100 md:p-5 lg:p-10 h-fit flex flex-col md:flex-row gap-16 lg:border-4">
         <img src={IMG} alt="" className="w-96" />
         <form>
           <div className="flex flex-row items-center justify-center lg:justify-start">
