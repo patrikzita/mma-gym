@@ -94,3 +94,5 @@ export const Pricing = () => {
     </main>
   );
 };
+
+export default Pricing

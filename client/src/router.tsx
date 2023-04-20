@@ -1,14 +1,32 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import NavLayout from "./NavLayout";
 import { AuthProvider } from "./context/AuthContext";
-import SignUp from "./pages/SignUp";
-import Home from "./pages/home";
-import SignIn from "./pages/SignIn";
-import ContactUs from "./pages/ContactUs";
-import { Pricing } from "./pages/Pricing";
-import { Schedule } from "./pages/Schedule";
-import { Merch } from "./pages/Merch";
-import ProductDetails from "./component/Products/ProductDetails";
+import { lazy, Suspense } from "react";
+
+const Home = lazy(() => {
+  return import("./pages/home");
+});
+const SignUp = lazy(() => {
+  return import("./pages/SignUp");
+});
+const SignIn = lazy(() => {
+  return import("./pages/SignIn");
+});
+const ContactUs = lazy(() => {
+  return import("./pages/ContactUs");
+});
+const Pricing = lazy(() => {
+  return import("./pages/Pricing");
+});
+const Merch = lazy(() => {
+  return import("./pages/Merch");
+});
+const Schedule = lazy(() => {
+  return import("./pages/Schedule");
+});
+const ProductDetails = lazy(() => {
+  return import("./component/Products/ProductDetails");
+});
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +53,9 @@ export const router = createBrowserRouter([
 function ContextWrapper() {
   return (
     <AuthProvider>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </AuthProvider>
   );
 }

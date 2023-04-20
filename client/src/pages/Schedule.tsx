@@ -252,3 +252,5 @@ export const Schedule = () => {
     </main>
   );
 };
+
+export default Schedule

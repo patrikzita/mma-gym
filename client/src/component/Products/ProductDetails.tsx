@@ -14,7 +14,7 @@ const ProductDetails = () => {
   return (
     <main>
       <section className="w-full h-fit md:w-11/12 md:m-auto">
-        <div className="flex flex-col justify-center md:flex-row mt-40 mb-8">
+        <div className="flex flex-col gap-8 justify-center md:flex-row mt-40 mb-8">
           <div className="flex flex-col md:flex-row justify-center gap-5 items-center md:items-start flex-1">
             <button
               className="ml-4 md:ml-0 self-start md:self-auto hover:bg-gray-100 p-2 rounded-full"
@@ -47,7 +47,7 @@ const ProductDetails = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap justify-between w-full gap-y-3">
+            <div className="flex flex-wrap justify-between w-full gap-y-3 gap-x-4">
               <div>
                 <h1 className="text-3xl font-bold text-red-600">
                   {formatCurrency(product!.price, "USD")}
@@ -63,7 +63,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
               </div>
-              <button className="flex flex-grow sm:flex-none justify-center md:justify-start items-center gap-x-3 bg-green-500 p-3 text-white font-bold">
+              <button className="flex flex-grow sm:flex-none  justify-center md:justify-start items-center gap-x-3 bg-green-500 p-3 text-white font-bold">
                 <BsFillBagCheckFill />
                 Add to Cart
               </button>
