@@ -28,7 +28,7 @@ const ProductDetails = () => {
               className="w-72 md:w-96"
             />
           </div>
-          <div className="flex flex-col items-start flex-1 gap-y-4 py-5 px-16">
+          <div className="flex flex-col items-start flex-1 gap-y-4 md:py-5 px-4 md:px-16">
             <div className="flex justify-between w-full">
               <h1 className="text-3xl text-secondary font-bold">
                 {product?.name}
@@ -63,7 +63,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
               </div>
-              <button className="flex items-center gap-x-3 bg-green-500 p-3 text-white font-bold">
+              <button className="flex flex-grow sm:flex-none justify-center md:justify-start items-center gap-x-3 bg-green-500 p-3 text-white font-bold">
                 <BsFillBagCheckFill />
                 Add to Cart
               </button>

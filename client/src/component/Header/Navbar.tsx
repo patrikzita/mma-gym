@@ -9,6 +9,11 @@ const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
   const hamburgerMenu = () => {
     setHamburger(!hamburger);
+    scrollToTop();
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
   };
 
   const PATHS = [
@@ -31,10 +36,10 @@ const Navbar = () => {
   ];
 
   return (
-    /* TODO: Opravit navbar */
+    
     <nav className="fixed top-0 left-0 right-0 z-50 py-6 px-12 text-white bg-black">
       <div className="flex items-center justify-between">
-        <Link to="/">
+        <Link to="/" onClick={scrollToTop}>
           <img src={Logo} alt="MMA gym logo" className="w-16 h-auto" />
         </Link>
         <div className="hidden lg:block">
@@ -44,6 +49,7 @@ const Navbar = () => {
                 key={item.title}
                 to={item.path}
                 className="text-lg text-gray-300 hover:text-secondary mr-4"
+                onClick={scrollToTop}
               >
                 {item.title}
               </Link>
@@ -54,6 +60,7 @@ const Navbar = () => {
           <Link
             to="/signin"
             className="inline-block text-lg px-4 py-2 leading-none text-white hover:text-secondary  lg:mt-0"
+            onClick={scrollToTop}
           >
             <FaUserAlt />
           </Link>

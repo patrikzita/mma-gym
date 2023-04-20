@@ -138,17 +138,27 @@ type ProductCardProps = {
 
 const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
   const navigate = useNavigate();
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="flex flex-col w-fit p-5 items-center gap-y-8 mx-auto hover:border-2">
       <img
         src={img}
         alt=""
         className="w-max-64 cursor-pointer"
-        onClick={() => navigate(`/merch/${id}`)}
+        onClick={() => {
+          scrollToTop();
+          navigate(`/merch/${id}`);
+        }}
       />
       <h1
         className="text-md text-blue-400 font-medium cursor-pointer hover:text-blue-300"
-        onClick={() => navigate(`/merch/${id}`)}
+        onClick={() => {
+          scrollToTop();
+          navigate(`/merch/${id}`);
+        }}
       >
         {name}
       </h1>
