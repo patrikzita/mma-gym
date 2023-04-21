@@ -24,7 +24,6 @@ type CartOrderItemProps = {
   id: string;
 };
 
-// TODO: dodělat cardoderitem
 const CartOrderItem = ({ id }: CartOrderItemProps) => {
   const { removeCartItem } = useShoppingCart();
   const navigate = useNavigate();
@@ -133,11 +132,15 @@ const Navbar = () => {
         <div className="flex gap-5 items-center">
           <div>
             <div
-              className="inline-block cursor-pointer text-lg px-4 py-2 leading-none text-whitelg:mt-0 relative"
+              className="inline-block cursor-pointer text-lg px-4 py-2 leading-none text-whitelg:mt-0 relative hover:text-secondary"
               onClick={toggleCartMenu}
-             
             >
-              <FaShoppingBag className="hover:text-secondary" />
+              <FaShoppingBag />
+              {cartItems.length !== 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartItems.length}
+                </span>
+              )}
             </div>
             <Link
               to="/signin"
@@ -167,7 +170,7 @@ const Navbar = () => {
             ref={cartMenuRef}
           >
             {cartItems.length === 0 ? (
-              <div className="flex items-center justify-center h-full">
+              <div className="flex items-center justify-center h-32 ">
                 <p className="text-center text-gray-500">
                   Your Cart is empty...
                 </p>
