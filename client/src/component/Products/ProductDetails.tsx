@@ -6,6 +6,38 @@ import { BiArrowBack } from "react-icons/bi";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import Newsletter from "../Newsletter/Newsletter";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
+import { toast } from "react-hot-toast";
+import styles from "./Product.module.css";
+import classNames from "classnames";
+import { MdOutlineClose } from "react-icons/md";
+import { HiLightningBolt } from "react-icons/hi";
+
+const notify = () =>
+  toast.custom(
+    (t) => (
+      <div
+        className={classNames([
+          styles.notificationWrapper,
+          t.visible ? "top-0" : "-top-96",
+        ])}
+      >
+        <div className={styles.iconWrapper}>
+          <HiLightningBolt />
+        </div>
+        <div className={styles.contentWrapper}>
+          <h1>Product was added to your Cart</h1>
+          <p>
+            An improved version of VESSEL is now available, refresh to update.
+          </p>
+        </div>
+        <div className={styles.closeIcon} onClick={() => toast.dismiss(t.id)}>
+          <MdOutlineClose />
+        </div>
+      </div>
+    ),
+    { id: "unique-notification", position: "top-center" }
+  );
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -67,6 +99,7 @@ const ProductDetails = () => {
               </div>
               <button className="flex flex-grow sm:flex-none  justify-center md:justify-start items-center gap-x-3 bg-green-500 p-3 text-white font-bold" onClick={()=>{
                 increaseCartQuantity(id as string)
+                notify();
               }}>
                 <BsFillBagCheckFill />
                 Add to Cart
