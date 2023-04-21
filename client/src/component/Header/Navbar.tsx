@@ -1,13 +1,88 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 import { FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdAddCircleOutline, MdClose } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+import { useProductQuery } from "../../data/queries";
+import { formatCurrency } from "../../utilities/formatCurrency";
 import Logo from "/images/Logo.svg";
-import { AiFillShopping } from "react-icons/ai";
+
+type CartItem = {
+  id: number;
+  name: string;
+  img: string;
+  price: number;
+};
+type Path = {
+  title: string;
+  path: string;
+};
+
+type CartOrderItemProps = {
+  id: string;
+};
+
+// TODO: dodělat cardoderitem
+const CartOrderItem = ({ id }: CartOrderItemProps) => {
+  const { removeCartItem } = useShoppingCart();
+  const navigate = useNavigate();
+  const { data, status } = useProductQuery(id);
+  if (status === "loading") return <h1>Loading...</h1>;
+  if (status === "error" || !data) return <h1>Not connected to API</h1>;
+
+  return (
+    <div
+      className="flex items-center justify-between px-4 py-2 text-sm font-medium cursor-pointer text-gray-600 hover:bg-gray-100"
+      onClick={() => navigate(`/merch/${id}`)}
+    >
+      <div className="flex justify-center flex-1">
+        <img src={data.img} alt={data.name} width={50} />
+      </div>
+      <p className="flex justify-center flex-1">{data.name}</p>
+      <p className="flex justify-center flex-1">
+        {formatCurrency(data.price, "usd")}
+      </p>
+      <button
+        className="bg-secondary p-1 text-white rounded-full hover:text-secondary hover:bg-white text-xs"
+        onClick={(e) => {
+          e.stopPropagation();
+          removeCartItem(id);
+        }}
+      >
+        <AiOutlineClose />
+      </button>
+    </div>
+  );
+};
 
 const Navbar = () => {
   const [hamburger, setHamburger] = useState(false);
+  const [cartMenuOpen, setCartMenuOpen] = useState(false);
+  const { cartItems } = useShoppingCart();
+
+  const cartMenuRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      cartMenuRef.current &&
+      !cartMenuRef.current.contains(event.target as Node)
+    ) {
+      setCartMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const toggleCartMenu = () => {
+    setCartMenuOpen((current) => !current);
+  };
+
   const hamburgerMenu = () => {
     setHamburger(!hamburger);
     scrollToTop();
@@ -17,7 +92,7 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   };
 
-  const PATHS = [
+  const PATHS: Path[] = [
     {
       title: "Home",
       path: "/",
@@ -35,7 +110,6 @@ const Navbar = () => {
       path: "/pricing",
     },
   ];
-
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 py-6 px-12 text-white bg-black">
       <div className="flex items-center justify-between">
@@ -59,10 +133,11 @@ const Navbar = () => {
         <div className="flex gap-5 items-center">
           <div>
             <div
-              className="inline-block cursor-pointer text-lg px-4 py-2 leading-none text-white hover:text-secondary lg:mt-0"
-              onClick={scrollToTop}
+              className="inline-block cursor-pointer text-lg px-4 py-2 leading-none text-whitelg:mt-0 relative"
+              onClick={toggleCartMenu}
+             
             >
-              <FaShoppingBag />
+              <FaShoppingBag className="hover:text-secondary" />
             </div>
             <Link
               to="/signin"
@@ -86,6 +161,40 @@ const Navbar = () => {
             <GiHamburgerMenu />
           </button>
         </div>
+        {cartMenuOpen && (
+          <div
+            className="absolute top-16 right-8 -translate-x-1/2 mt-4 w-72  py-2 bg-white rounded-lg shadow-xl z-20 px-3"
+            ref={cartMenuRef}
+          >
+            {cartItems.length === 0 ? (
+              <div className="flex items-center justify-center h-full">
+                <p className="text-center text-gray-500">
+                  Your Cart is empty...
+                </p>
+              </div>
+            ) : (
+              <div className="flex flex-col justify-between gap-3">
+                <div className="flex justify-between text-black pb-2 border-b-2 text-xl">
+                  <p>Cart</p>
+                  <button
+                    className="hover:text-secondary"
+                    onClick={toggleCartMenu}
+                  >
+                    <AiOutlineClose />
+                  </button>
+                </div>
+                {cartItems.map((item) => (
+                  <CartOrderItem key={item.id} id={item.id} />
+                ))}
+                <div>
+                  <button className="flex w-full font-bold justify-center bg-secondary py-3 rounded-md">
+                    Checkout
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       <div

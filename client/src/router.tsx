@@ -3,6 +3,7 @@ import NavLayout from "./NavLayout";
 import { AuthProvider } from "./context/AuthContext";
 import { lazy, Suspense } from "react";
 import Loading from "./component/Loading";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 const Home = lazy(() => {
   return import("./pages/home");
@@ -54,9 +55,11 @@ export const router = createBrowserRouter([
 function ContextWrapper() {
   return (
     <AuthProvider>
-      <Suspense fallback={<Loading />}>
-        <Outlet />
-      </Suspense>
+      <ShoppingCartProvider>
+        <Suspense fallback={<Loading />}>
+          <Outlet />
+        </Suspense>
+      </ShoppingCartProvider>
     </AuthProvider>
   );
 }

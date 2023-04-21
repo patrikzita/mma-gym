@@ -5,9 +5,11 @@ import { BsFillBagCheckFill, BsFillShareFill } from "react-icons/bs";
 import { BiArrowBack } from "react-icons/bi";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import Newsletter from "../Newsletter/Newsletter";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const { increaseCartQuantity } = useShoppingCart();
   const navigate = useNavigate();
   const product = PRODUCTS.find((product) => product.id === id);
 
@@ -63,7 +65,9 @@ const ProductDetails = () => {
                   </div>
                 </div>
               </div>
-              <button className="flex flex-grow sm:flex-none  justify-center md:justify-start items-center gap-x-3 bg-green-500 p-3 text-white font-bold">
+              <button className="flex flex-grow sm:flex-none  justify-center md:justify-start items-center gap-x-3 bg-green-500 p-3 text-white font-bold" onClick={()=>{
+                increaseCartQuantity(id as string)
+              }}>
                 <BsFillBagCheckFill />
                 Add to Cart
               </button>

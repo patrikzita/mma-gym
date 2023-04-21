@@ -4,6 +4,8 @@ import { formatCurrency } from "../utilities/formatCurrency";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useProductsQuery } from "../data/queries";
 
 type ProductType = {
   id: string;
@@ -137,6 +139,8 @@ type ProductCardProps = {
 };
 
 const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
+  const { increaseCartQuantity, cartItems } = useShoppingCart();
+  const isProductAdded = cartItems.some((item) => item.id === id);
   const navigate = useNavigate();
   const scrollToTop = () => {
     window.scrollTo(0, 0);
@@ -166,22 +170,39 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
         <h2 className="text-xl text-red-500 font-medium">
           {formatCurrency(price, "USD")}
         </h2>
-        <button className="flex items-center border-2 border-gray-100 gap-x-2 px-2 py-1 hover:drop-shadow-sm">
-          <MdShoppingCart />
-          Add to Cart
-        </button>
+        {isProductAdded ? (
+          <div className="flex items-center font-bold bg-green-400 text-white gap-x-2 px-2 py-1 hover:drop-shadow-sm">
+            Added to Cart
+          </div>
+        ) : (
+          <button
+            className="flex items-center border-2 border-gray-100 gap-x-2 px-2 py-1 hover:drop-shadow-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              increaseCartQuantity(id);
+            }}
+          >
+            <MdShoppingCart />
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
 export const Merch = () => {
+  const { data: productData, status } = useProductsQuery();
   const [query, setQuery] = useState("");
 
   const search = (data: ProductType[]) => {
     return data.filter((item) => item.name.toLowerCase().includes(query));
   };
 
+  if (status === "loading") {
+    return <h1>Loading...</h1>;
+  }
+  if (status === "error") return <h1>Not connected to API</h1>;
   return (
     <main>
       <SubHeader title="Merch" />
@@ -199,7 +220,7 @@ export const Merch = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-5 my-32 just">
-        {search(PRODUCTS).map((product) => (
+        {search(productData).map((product: any) => (
           <ProductCard
             key={product.id}
             id={product.id}
@@ -213,4 +234,4 @@ export const Merch = () => {
   );
 };
 
-export default Merch
+export default Merch;
