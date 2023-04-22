@@ -1,50 +1,34 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { PRODUCTS } from "../../pages/Merch";
-import { FaTruck } from "react-icons/fa";
-import { BsFillBagCheckFill, BsFillShareFill } from "react-icons/bs";
+import { toast } from "react-hot-toast";
 import { BiArrowBack } from "react-icons/bi";
+import { BsFillBagCheckFill, BsFillShareFill } from "react-icons/bs";
+import { FaTruck } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+import { useProductQuery } from "../../data/queries";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import Newsletter from "../Newsletter/Newsletter";
-import { useShoppingCart } from "../../context/ShoppingCartContext";
-import { toast } from "react-hot-toast";
-import styles from "./Product.module.css";
-import classNames from "classnames";
-import { MdOutlineClose } from "react-icons/md";
-import { HiLightningBolt } from "react-icons/hi";
-
-const notify = () =>
-  toast.custom(
-    (t) => (
-      <div
-        className={classNames([
-          styles.notificationWrapper,
-          t.visible ? "top-0" : "-top-96",
-        ])}
-      >
-        <div className={styles.iconWrapper}>
-          <HiLightningBolt />
-        </div>
-        <div className={styles.contentWrapper}>
-          <h1>Product was added to your Cart</h1>
-          <p>
-            An improved version of VESSEL is now available, refresh to update.
-          </p>
-        </div>
-        <div className={styles.closeIcon} onClick={() => toast.dismiss(t.id)}>
-          <MdOutlineClose />
-        </div>
-      </div>
-    ),
-    { id: "unique-notification", position: "top-center" }
-  );
-
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { increaseCartQuantity } = useShoppingCart();
-  const navigate = useNavigate();
-  const product = PRODUCTS.find((product) => product.id === id);
+  const { increaseCartQuantity, cartItems } = useShoppingCart();
+  const { data: productData, status } = useProductQuery(id as string);
 
+  const handleAddToCart = () => {
+    const isProductAdded = cartItems.some((item) => item.id === id);
+    increaseCartQuantity(id as string);
+
+    if (isProductAdded) {
+      toast("This item is already in Cart.");
+    } else {
+      toast.success("Product was added to your Cart")
+    }
+  };
+
+  const navigate = useNavigate();
+  if (status === "loading") {
+    return <h1>Loading...</h1>;
+  }
+  if (status === "error") return <h1>Not connected to API</h1>;
   return (
     <main>
       <section className="w-full h-fit md:w-11/12 md:m-auto">
@@ -57,23 +41,23 @@ const ProductDetails = () => {
               <BiArrowBack className="text-3xl" />
             </button>
             <img
-              src={`/${product?.imgBig}`}
-              alt={product?.name}
+              src={`${productData?.imgBig}`}
+              alt={productData?.name}
               className="w-72 md:w-96"
             />
           </div>
           <div className="flex flex-col items-start flex-1 gap-y-4 md:py-5 px-4 md:px-16">
             <div className="flex justify-between w-full">
               <h1 className="text-3xl text-secondary font-bold">
-                {product?.name}
+                {productData?.name}
               </h1>
               <button className="hover:bg-gray-100 p-2 rounded-full">
                 <BsFillShareFill />
               </button>
             </div>
-            <p>{product?.description}</p>
+            <p>{productData?.description}</p>
             <div className="flex flex-col gap-y-3 py-3 px-6 bg-secondary/30 w-full">
-              <h3 className="font-bold text-green-700">{`In stock - ${product?.quantity} pcs`}</h3>
+              <h3 className="font-bold text-green-700">{`In stock - ${productData?.quantity} pcs`}</h3>
               <div className="flex gap-x-3 items-center">
                 <FaTruck className="text-lg" />
                 <p className="">
@@ -84,7 +68,7 @@ const ProductDetails = () => {
             <div className="flex flex-wrap justify-between w-full gap-y-3 gap-x-4">
               <div>
                 <h1 className="text-3xl font-bold text-red-600">
-                  {formatCurrency(product!.price, "USD")}
+                  {formatCurrency(productData!.price, "USD")}
                 </h1>
                 <div className="flex gap-x-1 text-lg items-center font-normal">
                   Special price valid with coupon
@@ -97,10 +81,10 @@ const ProductDetails = () => {
                   </div>
                 </div>
               </div>
-              <button className="flex flex-grow sm:flex-none  justify-center md:justify-start items-center gap-x-3 bg-green-500 p-3 text-white font-bold" onClick={()=>{
-                increaseCartQuantity(id as string)
-                notify();
-              }}>
+              <button
+                className="flex flex-grow sm:flex-none  justify-center md:justify-start items-center gap-x-3 bg-green-500 p-3 text-white font-bold"
+                onClick={handleAddToCart}
+              >
                 <BsFillBagCheckFill />
                 Add to Cart
               </button>
