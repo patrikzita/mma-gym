@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <>
       <section className="hero-section flex justify-center md:justify-end">
-        <div className="flex items-center justify-center md:justify-end md:h-screen md:pr-12 md:pr-36">
+        <div className="flex items-center justify-center md:justify-end md:h-screen md:pr-12">
           <div className="flex flex-col text-center gap-3">
             <h1 className="text-white text-5xl">Transform yourself</h1>
             <p className="text-white max-w-sm">

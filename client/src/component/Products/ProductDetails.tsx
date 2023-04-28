@@ -4,12 +4,14 @@ import { BsFillBagCheckFill, BsFillShareFill } from "react-icons/bs";
 import { FaTruck } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
-import { useProductQuery } from "../../data/queries";
+import { useProductQuery } from "../../utilities/queries";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import Newsletter from "../Newsletter/Newsletter";
+import Loading from "../Loading";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { increaseCartQuantity, cartItems } = useShoppingCart();
   const { data: productData, status } = useProductQuery(id as string);
 
@@ -24,9 +26,9 @@ const ProductDetails = () => {
     }
   };
 
-  const navigate = useNavigate();
+  
   if (status === "loading") {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
   if (status === "error") return <h1>Not connected to API</h1>;
   return (

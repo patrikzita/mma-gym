@@ -100,5 +100,70 @@
       "category": "MMA",
       "description": "Practice your grappling and ground-and-pound techniques with our high-quality grappling dummy. Made from durable materials with realistic features, it's perfect for solo training sessions or drilling with a partner."
     }
+  ],
+  "trainers": [
+    {
+      "id": "t1",
+      "name": "Jiří Procházka",
+      "img": "/images/jiri_prochazka.png",
+      "age": 30,
+      "weight": 205,
+      "hometown": "Hostěradice, Czechia",
+      "focus": "Mental coach",
+      "description": "Jiří Procházka is a 30-year-old mental coach from Hostěradice, Czechia. He weighs 205 lbs and focuses on helping athletes improve their mental game. Jiří has a deep understanding of the psychological aspects of sports and uses a variety of techniques to help athletes overcome mental barriers and reach their full potential. Whether it's through visualization, positive self-talk, or other mental conditioning methods, Jiří is dedicated to helping athletes achieve their goals.",
+      "score": {
+        "wins": 29,
+        "losses": 3,
+        "draws": 1
+      }
+    },
+    {
+      "id": "t2",
+      "name": "Jon Jones",
+      "img": "/images/jon_jones.png",
+      "age": 35,
+      "weight": 248,
+      "hometown": "Rochester, United States",
+      "focus": "Box trainer",
+      "description": "Jon Jones is a 35-year-old box trainer from Rochester, United States. He weighs 248 lbs and specializes in training boxers. With years of experience in the ring, Jon knows what it takes to become a successful boxer. He works with athletes to improve their technique, strategy, and overall performance. Whether it's through intense training sessions or one-on-one coaching, Jon is dedicated to helping his athletes reach their full potential.",
+      "score": {
+        "wins": 27,
+        "losses": 1,
+        "draws": 0
+      }
+    },
+    {
+      "id": "t3",
+      "name": "David Dvořák",
+      "img": "/images/david_dvorak.png",
+      "age": 30,
+      "weight": 125.5,
+      "hometown": "Hořice, Czechia",
+      "focus": "Wrestling trainer",
+      "description": "David Dvořák is a 30-year-old wrestling trainer from Hořice, Czechia. He weighs 125.5 lbs and focuses on helping wrestlers improve their technique and strategy. David has a deep understanding of wrestling and uses a variety of techniques to help athletes become better. He works with athletes to improve their strength, speed, and agility, and to develop a winning mindset. Whether it's through intense training sessions or one-on-one coaching, David is dedicated to helping his athletes achieve their goals.",
+      "score": {
+        "wins": 20,
+        "losses": 5,
+        "draws": 0
+      }
+    },
+    {
+      "id": "t4",
+      "name": "Lucy Martinez",
+      "age": 28,
+      "weight": 135,
+      "hometown": "Madrid, Spain",
+      "focus": "Wrestling trainer",
+      "description": "Lucy Martinez is a 28-year-old wrestling trainer from Madrid, Spain. She weighs 135 lbs and specializes in helping athletes improve their wrestling skills. Lucy has a passion for wrestling and uses her expertise to help athletes become better. She works with athletes to improve their technique, strength, and overall performance. Whether it's through intense training sessions or one-on-one coaching, Lucy is dedicated to helping her athletes reach their full potential."
+    },
+    {
+      "id": "t5",
+      "name": "Alex Thompson",
+      "age": 32,
+      "weight": 170,
+      "hometown": "London, United Kingdom",
+      "focus": "Wrestling trainer",
+      "description": "Alex Thompson is a 32-year-old wrestling trainer from London, United Kingdom. He weighs 170 lbs and focuses on helping athletes become more successful in wrestling. With years of experience in the sport, Alex knows what it takes to become a successful wrestler. He works with athletes to improve their technique, strength, and overall performance. Whether it's through intense training sessions or one-on-one coaching, Alex is dedicated to helping his athletes achieve their goals."
+    }
   ]
 }

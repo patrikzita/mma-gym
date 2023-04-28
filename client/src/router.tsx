@@ -29,6 +29,9 @@ const Schedule = lazy(() => {
 const ProductDetails = lazy(() => {
   return import("./component/Products/ProductDetails");
 });
+const TrainerDetail = lazy(() => {
+  return import("./component/Trainers/TrainerDetail");
+});
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +49,7 @@ export const router = createBrowserRouter([
           { path: "schedule", element: <Schedule /> },
           { path: "merch", element: <Merch /> },
           { path: "merch/:id", element: <ProductDetails /> },
+          { path: "trainers/:id", element: <TrainerDetail /> },
         ],
       },
     ],

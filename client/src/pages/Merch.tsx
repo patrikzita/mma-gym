@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { useProductsQuery } from "../data/queries";
+import { useProductsQuery } from "../utilities/queries";
 
 type ProductType = {
   id: string;

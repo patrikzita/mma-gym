@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdAddCircleOutline, MdClose } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
-import { useProductQuery } from "../../data/queries";
+import { useProductQuery } from "../../utilities/queries";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import Logo from "/images/Logo.svg";
 
@@ -207,6 +207,7 @@ const Navbar = () => {
           {cartItems.length === 0 ? (
             <div className="flex items-center justify-center h-32 ">
               <p className="text-center text-gray-500">Your Cart is empty...</p>
+              <p className="text-xl">🙄</p>
             </div>
           ) : (
             <div className="flex flex-col justify-between gap-3 h-full">
