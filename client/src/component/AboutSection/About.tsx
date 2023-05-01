@@ -21,7 +21,7 @@ const About = () => {
       title: "Fitness",
       description: "Our expert trainers are here to help you progress.",
       icon: <MdFitnessCenter className="text-[3rem] text-secondary" />,
-      img: "/images/1.jpg",
+      img: "/images/3.jpg",
     },
     {
       title: "Discipline",

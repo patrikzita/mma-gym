@@ -5,7 +5,7 @@ const ContactUs = () => {
   return (
     <main className="mt-20">
       <SubHeader title="Contact Us" />
-      <div className="flex flex-col gap-y-5 lg:gap-x-10 px-4 md:px-16 lg:px-32 mt-6 lg:flex-row">
+      <div className="flex flex-col gap-y-5 lg:gap-x-10 px-4 md:px-16 lg:px-32 py-6 mt-6 lg:flex-row">
         <div className="flex items-center flex-1">
           <div>
             <h1 className="text-3xl lg:text-5xl font-bold">

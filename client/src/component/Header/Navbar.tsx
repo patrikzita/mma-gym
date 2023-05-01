@@ -111,7 +111,6 @@ const Navbar = () => {
       path: "/pricing",
     },
   ];
-  console.log(cartMenuOpen);
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 py-6 px-12 text-white bg-black">

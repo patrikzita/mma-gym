@@ -114,8 +114,17 @@
       "score": {
         "wins": 29,
         "losses": 3,
-        "draws": 1
-      }
+        "draws": 1,
+        "details": {
+          "winStreak": 13,
+          "knockouts": 25,
+          "firstRoundFinish": 23
+        }
+      },
+      "facebookUrl": "https://github.com/patrikzita",
+      "instagramUrl": "https://github.com/patrikzita",
+      "twitterUrl": "https://twitter.com/patrikzit",
+      "emailUrl": "patrikzit@seznam.cz"
     },
     {
       "id": "t2",
@@ -129,8 +138,17 @@
       "score": {
         "wins": 27,
         "losses": 1,
-        "draws": 0
-      }
+        "draws": 0,
+        "details": {
+          "winStreak": 15,
+          "knockouts": 7,
+          "firstRoundFinish": 3
+        }
+      },
+      "facebookUrl": "https://github.com/patrikzita",
+      "instagramUrl": "https://github.com/patrikzita",
+      "twitterUrl": "https://twitter.com/patrikzit",
+      "emailUrl": "patrikzit@seznam.cz"
     },
     {
       "id": "t3",
@@ -144,8 +162,17 @@
       "score": {
         "wins": 20,
         "losses": 5,
-        "draws": 0
-      }
+        "draws": 0,
+        "details": {
+          "winStreak": 8,
+          "knockouts": 8,
+          "firstRoundFinish": 10
+        }
+      },
+      "facebookUrl": "https://github.com/patrikzita",
+      "instagramUrl": "https://github.com/patrikzita",
+      "twitterUrl": "https://twitter.com/patrikzit",
+      "emailUrl": "patrikzit@seznam.cz"
     },
     {
       "id": "t4",

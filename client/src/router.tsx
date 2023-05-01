@@ -1,9 +1,8 @@
-import { createBrowserRouter, Outlet } from "react-router-dom";
-import NavLayout from "./NavLayout";
-import { AuthProvider } from "./context/AuthContext";
 import { lazy, Suspense } from "react";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import Loading from "./component/Loading";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import NavLayout from "./NavLayout";
 
 const Home = lazy(() => {
   return import("./pages/home");
@@ -58,12 +57,10 @@ export const router = createBrowserRouter([
 
 function ContextWrapper() {
   return (
-    <AuthProvider>
-      <ShoppingCartProvider>
-        <Suspense fallback={<Loading />}>
-          <Outlet />
-        </Suspense>
-      </ShoppingCartProvider>
-    </AuthProvider>
+    <ShoppingCartProvider>
+      <Suspense fallback={<Loading />}>
+        <Outlet />
+      </Suspense>
+    </ShoppingCartProvider>
   );
 }

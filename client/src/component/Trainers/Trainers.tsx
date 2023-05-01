@@ -9,12 +9,28 @@ type TrainerCardProps = {
   name: string;
   img: string;
   focus: string;
+  instagramUrl: string;
+  facebookUrl: string;
+  twitterUrl: string;
+  emailUrl: string;
 };
 
-const TrainerCard = ({id, name, img, focus }: TrainerCardProps) => {
+const TrainerCard = ({
+  id,
+  name,
+  img,
+  focus,
+  facebookUrl,
+  instagramUrl,
+  twitterUrl,
+  emailUrl,
+}: TrainerCardProps) => {
   const navigate = useNavigate();
   return (
-    <div className="box-desc relative cursor-pointer w-fit h-fit" onClick={()=> navigate(`/trainers/${id}`)}>
+    <div
+      className="box-desc relative cursor-pointer w-fit h-fit"
+      onClick={() => navigate(`/trainers/${id}`)}
+    >
       <img
         src={img}
         alt={name}
@@ -29,11 +45,19 @@ const TrainerCard = ({id, name, img, focus }: TrainerCardProps) => {
       <div className="text-primary bg-white w-full text-center shadow-xl absolute z-20 pt-2 pb-5 bottom-[0]">
         <h3 className="text-xl font-bold">{name}</h3>
         <p className="text-base font-medium">{focus}</p>
-        <div className="flex gap-4 text-[#646464] w-full justify-center mt-3 text-xl">
-          <FaFacebook className="hover:text-secondary" />
-          <FaInstagram className="hover:text-secondary" />
-          <FaTwitter className="hover:text-secondary" />
-          <MdEmail className="hover:text-secondary" />
+        <div className="flex gap-4 text-gray-500 w-full justify-center mt-3 text-xl">
+          <a href={facebookUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+            <FaFacebook className="hover:text-secondary" />
+          </a>
+          <a href={instagramUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+            <FaInstagram className="hover:text-secondary" />
+          </a>
+          <a href={twitterUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+            <FaTwitter className="hover:text-secondary" />
+          </a>
+          <a href={`mailto:${emailUrl}`} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+            <MdEmail className="hover:text-secondary" />
+          </a>
         </div>
       </div>
     </div>
@@ -59,6 +83,10 @@ const Trainers = () => {
             name={trainer.name}
             img={trainer.img}
             focus={trainer.focus}
+            facebookUrl={trainer.facebookUrl}
+            instagramUrl={trainer.instagramUrl}
+            twitterUrl={trainer.twitterUrl}
+            emailUrl={trainer.emailUrl}
           />
         ))}
       </div>

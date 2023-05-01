@@ -14,9 +14,10 @@ const TrainerDetail = () => {
 
   if (isLoading) return <Loading />;
   if (!data) return <div>Error</div>;
+
   return (
     <main>
-      <div className="flex justify-between items-center bg-gray-800 pt-32 px-8">
+      <div className="flex justify-between items-center bg-gray-800 pt-32 px-3 md:px-32">
         <div className="flex flex-col gap-2 flex-1">
           <h1 className="text-xl md:text-5xl text-white font-bold uppercase">
             {data.name}
@@ -34,18 +35,46 @@ const TrainerDetail = () => {
         </div>
       </div>
       <div className="py-10 px-5 text-left md:text-center">
-        <h2 className="text-3xl font-bold text-secondary mb-8">
+        <h2 className="text-4xl font-bold text-secondary mb-8">
           About trainer
         </h2>
         <p className="max-w-md md:max-w-3xl mx-0 md:mx-auto text-left">
           {data.description}
         </p>
       </div>
-      <div className="py-10 px-5 text-left md:text-center">
-        <h2 className="text-3xl font-bold text-secondary mb-4">
+      <div className="py-10 px-5 text-center bg-gray-700">
+        <h2 className="text-4xl font-bold text-secondary mb-4">
           Stats & Records
         </h2>
-        <p className="text-xl font-bold">{`${data.score.wins}-${data.score.losses}-${data.score.draws} (W-L-D)`}</p>
+        <p className="text-3xl text-white font-bold mb-5">{`${data.score.wins}-${data.score.losses}-${data.score.draws} (W-L-D)`}</p>
+        <div className="flex justify-center gap-5 text-white mb-4">
+          <div className="w-64 text-center">
+            <p className="text-3xl  font-semibold pb-4 border-b-4 border-secondary">
+              {data.score.details.winStreak}
+            </p>
+            <p className="text-lg font-thin uppercase pt-4">Fight win streak</p>
+          </div>
+          <div className="w-64 text-center">
+            <p className="text-3xl font-semibold pb-4 border-b-4 border-secondary">
+              {data.score.details.knockouts}
+            </p>
+            <p className="text-lg font-thin uppercase pt-4">
+              Wins by knockouts
+            </p>
+          </div>
+          <div className="w-64 text-center">
+            <p className="text-3xl font-semibold pb-4 border-b-4 border-secondary">
+              {data.score.details.firstRoundFinish}
+            </p>
+            <p className="text-lg font-thin uppercase pt-4">
+              First Round Finishes
+            </p>
+          </div>
+        </div>
+
+        <button className="text-xl w-64 bg-transparent hover:bg-white-500 text-white font-semibold hover:text-secondary py-2 px-4 border border-white hover:border-secondary rounded">
+          View stats
+        </button>
       </div>
     </main>
   );

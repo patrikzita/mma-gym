@@ -34,7 +34,7 @@ const ProductDetails = () => {
   return (
     <main>
       <section className="w-full h-fit md:w-11/12 md:m-auto">
-        <div className="flex flex-col gap-8 justify-center md:flex-row mt-40 mb-8">
+        <div className="flex flex-col gap-8 justify-center md:flex-row mt-2 md:mt-40 mb-8">
           <div className="flex flex-col md:flex-row justify-center gap-5 items-center md:items-start flex-1">
             <button
               className="ml-4 md:ml-0 self-start md:self-auto hover:bg-gray-100 p-2 rounded-full"

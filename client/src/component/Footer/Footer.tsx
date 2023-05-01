@@ -4,7 +4,7 @@ import Logo from "/images/Logo.svg";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="border-t border-gray-400">
       <div className="flex flex-col gap-y-8 p-5 lg:flex-row lg:gap-5d m-10">
         <div className="flex flex-col items-center gap-y-2 lg:flex-1">
           <div className="flex items-center justify-center">
@@ -37,35 +37,6 @@ const Footer = () => {
           <p>7:00am - 19:00pm</p>
           <h2 className="text-xl font-bold">Sunday</h2>
           <p>7:00am - 12:00pm</p>
-        </div>
-        <div className="text-center lg:flex-1">
-          <h1 className="text-3xl text-center mb-2">Menu</h1>
-          <div className="flex flex-col">
-            <Link
-              to="/"
-              className="text-xl hover:text-secondary cursor-pointer"
-            >
-              Home
-            </Link>
-            <Link
-              to="/"
-              className="text-xl hover:text-secondary cursor-pointer"
-            >
-              Merch
-            </Link>
-            <Link
-              to="/"
-              className="text-xl hover:text-secondary cursor-pointer"
-            >
-              Schedule
-            </Link>
-            <Link
-              to="/"
-              className="text-xl hover:text-secondary cursor-pointer"
-            >
-              Pricing
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
