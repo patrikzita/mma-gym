@@ -62,22 +62,24 @@ const Navbar = () => {
   const { cartItems } = useShoppingCart();
 
   const cartMenuRef = useRef<HTMLDivElement | null>(null);
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      cartMenuRef.current &&
-      !cartMenuRef.current.contains(event.target as Node)
-    ) {
-      setCartMenuOpen(false);
-    }
-  };
-
+  const cartButtonRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      cartMenuRef.current &&
+      !cartMenuRef.current.contains(event.target as Node) &&
+      cartButtonRef.current &&
+      !cartButtonRef.current.contains(event.target as Node)
+    ) {
+      setCartMenuOpen(false);
+    }
+  };
+
   const toggleCartMenu = () => {
     setCartMenuOpen((current) => !current);
   };
@@ -109,6 +111,7 @@ const Navbar = () => {
       path: "/pricing",
     },
   ];
+  console.log(cartMenuOpen);
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 py-6 px-12 text-white bg-black">
@@ -137,6 +140,7 @@ const Navbar = () => {
           <div className="flex gap-5 items-center">
             <div>
               <div
+                ref={cartButtonRef}
                 className="inline-block cursor-pointer text-lg px-4 py-2 leading-none text-whitelg:mt-0 relative hover:text-secondary"
                 onClick={toggleCartMenu}
               >
@@ -222,9 +226,9 @@ const Navbar = () => {
               </div>
               <div className="flex flex-col justify-between w-full h-full gap-y-3">
                 <div>
-                {cartItems.map((item) => (
-                  <CartOrderItem key={item.id} id={item.id} />
-                ))}
+                  {cartItems.map((item) => (
+                    <CartOrderItem key={item.id} id={item.id} />
+                  ))}
                 </div>
                 <button className="flex w-full text-white font-bold justify-center bg-secondary py-3 rounded-md">
                   Checkout

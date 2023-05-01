@@ -24,47 +24,28 @@ const TrainerDetail = () => {
           <div className="text-white font-medium text-sm md:text-xl">
             <p>{data.focus}</p>
             <p>{data.hometown}</p>
-          </div>
-          <div className="flex md:hidden flex-col gap-4">
-            <div className="text-white font-medium text-sm md:text-xl">
-              <p>{`${data.age} y.o`}</p>
-              <p>{`${data.weight} LBS`}</p>
-            </div>
-            <button className="text-white  bg-secondary hover:bg-secondary/80 rounded-lg text-sm md:text-lg px-5 py-2.5 gap-3 self-start mb-3">
+            <button className="text-white bg-secondary hover:bg-secondary/80 rounded-lg text-sm md:text-lg px-5 py-2.5 gap-3 self-start mb-3 mt-3">
               Book me
             </button>
           </div>
         </div>
-        <img
-          className="flex-1"
-          src={data.img}
-          alt={`${data.name} image`}
-          width={100}
-        />
-        <div className="hidden md:flex flex-col flex-1 items-center gap-4">
-          <div className="text-white font-medium text-xl">
-            <p>{`${data.age} y.o`}</p>
-            <p>{`${data.weight} LBS`}</p>
-          </div>
-          <button className="text-white mx-auto bg-secondary hover:bg-secondary/80 rounded-lg text-lg px-5 py-2.5 inline-flex items-center gap-3 self-start">
-            Book me
-          </button>
+        <div className="flex-1 flex justify-center">
+          <img src={data.img} alt={`${data.name} image`} width={400} />
         </div>
       </div>
       <div className="py-10 px-5 text-left md:text-center">
         <h2 className="text-3xl font-bold text-secondary mb-8">
           About trainer
         </h2>
-        <p className="max-w-md mx-0 md:mx-auto text-left">{data.description}</p>
+        <p className="max-w-md md:max-w-3xl mx-0 md:mx-auto text-left">
+          {data.description}
+        </p>
       </div>
-      <div className="h-44 bg-gray-800 py-10 px-5">
-        <div>
-
-        </div>
-        <div>
-          <h3 className="text-3xl font-bold text-white mb-8">Stats & Records</h3>
-          <p>{`${data.score.wins}-${data.score.losses}-${data.score.draws} (W-L-D)`}</p>
-        </div>
+      <div className="py-10 px-5 text-left md:text-center">
+        <h2 className="text-3xl font-bold text-secondary mb-4">
+          Stats & Records
+        </h2>
+        <p className="text-xl font-bold">{`${data.score.wins}-${data.score.losses}-${data.score.draws} (W-L-D)`}</p>
       </div>
     </main>
   );
