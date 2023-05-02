@@ -1,57 +1,42 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import Loading from "./component/Loading";
+import Loading from "./pages/Loading";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import NavLayout from "./NavLayout";
+import { ROUTES } from "./utilities/routes";
 
-const Home = lazy(() => {
-  return import("./pages/home");
-});
-const SignUp = lazy(() => {
-  return import("./pages/SignUp");
-});
-const SignIn = lazy(() => {
-  return import("./pages/SignIn");
-});
-const ContactUs = lazy(() => {
-  return import("./pages/ContactUs");
-});
-const Pricing = lazy(() => {
-  return import("./pages/Pricing");
-});
-const Merch = lazy(() => {
-  return import("./pages/Merch");
-});
-const Schedule = lazy(() => {
-  return import("./pages/Schedule");
-});
-const ProductDetails = lazy(() => {
-  return import("./component/Products/ProductDetails");
-});
-const TrainerDetail = lazy(() => {
-  return import("./component/Trainers/TrainerDetail");
-});
-const NotFound = lazy(() => {
-  return import("./component/NotFound/NotFound");
-});
+const lazyLoad = (component: string, path = "pages") => {
+  return lazy(() => import(`./${path}/${component}`));
+};
+
+const Home = lazyLoad("Home");
+const SignUp = lazyLoad("SignUp");
+const SignIn = lazyLoad("SignIn");
+const ContactUs = lazyLoad("ContactUs");
+const Pricing = lazyLoad("Pricing");
+const Merch = lazyLoad("Merch");
+const Schedule = lazyLoad("Schedule");
+const ProductDetails = lazyLoad("ProductDetails", "component/Products");
+const TrainerDetail = lazyLoad("TrainerDetail", "component/Trainers");
+const NotFound = lazyLoad("NotFound", "component/NotFound");
 
 export const router = createBrowserRouter([
   {
     element: <ContextWrapper />,
     children: [
       {
-        path: "/",
+        path: ROUTES.HOME,
         element: <NavLayout />,
         children: [
           { index: true, element: <Home /> },
-          { path: "signup", element: <SignUp /> },
-          { path: "signin", element: <SignIn /> },
-          { path: "contact", element: <ContactUs /> },
-          { path: "pricing", element: <Pricing /> },
-          { path: "schedule", element: <Schedule /> },
-          { path: "merch", element: <Merch /> },
-          { path: "merch/:id", element: <ProductDetails /> },
-          { path: "trainers/:id", element: <TrainerDetail /> },
+          { path: ROUTES.SIGNUP, element: <SignUp /> },
+          { path: ROUTES.SIGNIN, element: <SignIn /> },
+          { path: ROUTES.CONTACT, element: <ContactUs /> },
+          { path: ROUTES.PRICING, element: <Pricing /> },
+          { path: ROUTES.SCHEDULE, element: <Schedule /> },
+          { path: ROUTES.MERCH, element: <Merch /> },
+          { path: `${ROUTES.MERCH}/:id`, element: <ProductDetails /> },
+          { path: `${ROUTES.TRAINERS}/:id`, element: <TrainerDetail /> },
           { path: "*", element: <NotFound /> },
         ],
       },

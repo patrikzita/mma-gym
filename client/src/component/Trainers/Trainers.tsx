@@ -1,11 +1,10 @@
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { useTrainersQuery } from "../../utilities/queries";
-import Loading from "../Loading";
 import { useNavigate } from "react-router-dom";
+import { useTrainersQuery } from "../../utilities/queries";
 import TrainerCardSkeleton from "./TrainersSkeleton";
 
-type TrainerCardProps = {
+type TrainerType = {
   id: string;
   name: string;
   img: string;
@@ -16,25 +15,20 @@ type TrainerCardProps = {
   emailUrl: string;
 };
 
-const TrainerCard = ({
-  id,
-  name,
-  img,
-  focus,
-  facebookUrl,
-  instagramUrl,
-  twitterUrl,
-  emailUrl,
-}: TrainerCardProps) => {
+type TrainerCardProps = {
+  trainer: TrainerType;
+};
+
+const TrainerCard = ({ trainer }: TrainerCardProps) => {
   const navigate = useNavigate();
   return (
     <div
       className="box-desc relative h-fit w-fit cursor-pointer"
-      onClick={() => navigate(`/trainers/${id}`)}
+      onClick={() => navigate(`/trainers/${trainer.id}`)}
     >
       <img
-        src={img}
-        alt={name}
+        src={trainer.img}
+        alt={`MMA fighter and trainer ${trainer.name}`}
         style={{ width: "20rem" }}
         className="transitation relative bottom-10 z-10 grayscale duration-500 hover:grayscale-0 hover:ease-in-out"
       />
@@ -44,11 +38,11 @@ const TrainerCard = ({
         className="absolute top-[3rem]"
       />
       <div className="absolute bottom-[0] z-20 w-full bg-white pt-2 pb-5 text-center text-primary shadow-xl">
-        <h3 className="text-xl font-bold">{name}</h3>
-        <p className="text-base font-medium">{focus}</p>
+        <h3 className="text-xl font-bold">{trainer.name}</h3>
+        <p className="text-base font-medium">{trainer.focus}</p>
         <div className="mt-3 flex w-full justify-center gap-4 text-xl text-gray-500">
           <a
-            href={facebookUrl}
+            href={trainer.facebookUrl}
             target="_blank"
             rel="noreferrer"
             onClick={(e) => e.stopPropagation()}
@@ -56,7 +50,7 @@ const TrainerCard = ({
             <FaFacebook className="hover:text-secondary" />
           </a>
           <a
-            href={instagramUrl}
+            href={trainer.instagramUrl}
             target="_blank"
             rel="noreferrer"
             onClick={(e) => e.stopPropagation()}
@@ -64,7 +58,7 @@ const TrainerCard = ({
             <FaInstagram className="hover:text-secondary" />
           </a>
           <a
-            href={twitterUrl}
+            href={trainer.twitterUrl}
             target="_blank"
             rel="noreferrer"
             onClick={(e) => e.stopPropagation()}
@@ -72,7 +66,7 @@ const TrainerCard = ({
             <FaTwitter className="hover:text-secondary" />
           </a>
           <a
-            href={`mailto:${emailUrl}`}
+            href={`mailto:${trainer.emailUrl}`}
             target="_blank"
             rel="noreferrer"
             onClick={(e) => e.stopPropagation()}
@@ -110,18 +104,8 @@ const Trainers = () => {
         The former champions help you to succeed in any discipline.
       </p>
       <div className="mt-16 flex flex-col items-center gap-y-32 md:flex-row md:justify-center md:gap-x-12">
-        {data.map((trainer: any) => (
-          <TrainerCard
-            key={trainer.name}
-            id={trainer.id}
-            name={trainer.name}
-            img={trainer.img}
-            focus={trainer.focus}
-            facebookUrl={trainer.facebookUrl}
-            instagramUrl={trainer.instagramUrl}
-            twitterUrl={trainer.twitterUrl}
-            emailUrl={trainer.emailUrl}
-          />
+        {data.map((trainer: TrainerType) => (
+          <TrainerCard trainer={trainer} />
         ))}
       </div>
     </section>

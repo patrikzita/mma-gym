@@ -1,35 +1,13 @@
-import { GiBookCover, GiProgression, GiWeightLiftingUp } from "react-icons/gi";
-import {
-  MdArrowForward,
-  MdFitnessCenter,
-  MdSportsGymnastics,
-} from "react-icons/md";
-import AboutCard from "./AboutCard";
+import { GiBookCover, GiWeightLiftingUp } from "react-icons/gi";
+import { MdArrowForward, MdSportsGymnastics } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import AboutCard from "./AboutCard";
+import { cardList } from "./aboutListData";
+import Button from "../UI/Button";
+import { ROUTES } from "../../utilities/routes";
 
 const About = () => {
   const navigate = useNavigate();
-
-  const cardList = [
-    {
-      title: "Progression",
-      description: "It´s just a matter of time when you become a fighter.",
-      icon: <GiProgression className="text-[3rem] text-secondary" />,
-      img: "/images/1.jpg",
-    },
-    {
-      title: "Fitness",
-      description: "Our expert trainers are here to help you progress.",
-      icon: <MdFitnessCenter className="text-[3rem] text-secondary" />,
-      img: "/images/3.jpg",
-    },
-    {
-      title: "Discipline",
-      description: "At MMA gym, we believe in more than just fighting.",
-      icon: <MdFitnessCenter className="text-[3rem] text-secondary" />,
-      img: "/images/1.jpg",
-    },
-  ];
 
   return (
     <section className="about-section relative py-5">
@@ -78,16 +56,10 @@ const About = () => {
                 </h1>
               </div>
             </div>
-            <button
-              onClick={() => navigate("/contact")}
-              className="mt-6 inline-flex items-center gap-3 self-center rounded-lg bg-primary px-5 py-2.5 text-lg text-white hover:bg-secondary lg:self-start"
-            >
-              JOIN CLASS NOW
-              <MdArrowForward />
-            </button>
+            <Button label="Join class now" url={ROUTES.CONTACT} />
           </div>
           <div className="hidden lg:block">
-            <img src="/images/2.png" alt="fighter" className="about-image" />
+            <img src="/images/2.png" alt="MMA figter" className="about-image" />
           </div>
         </div>
       </div>

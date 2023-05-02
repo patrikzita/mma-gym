@@ -2,7 +2,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { SubHeader } from "../component/Header/SubHeader";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { useProductsQuery } from "../utilities/queries";
@@ -30,27 +30,22 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
   const { increaseCartQuantity, cartItems } = useShoppingCart();
   const isProductAdded = cartItems.some((item) => item.id === id);
   const navigate = useNavigate();
-  const scrollToTop = () => {
+  const handleProductClick = () => {
     window.scrollTo(0, 0);
+    navigate(`/merch/${id}`);
   };
 
   return (
     <div className="mx-auto flex w-fit flex-col items-center gap-y-8 p-5 hover:border-2">
       <img
         src={img}
-        alt=""
+        alt={name}
         className="w-max-64 cursor-pointer"
-        onClick={() => {
-          scrollToTop();
-          navigate(`/merch/${id}`);
-        }}
+        onClick={handleProductClick}
       />
       <h1
         className="text-md cursor-pointer font-medium text-blue-400 hover:text-blue-300"
-        onClick={() => {
-          scrollToTop();
-          navigate(`/merch/${id}`);
-        }}
+        onClick={handleProductClick}
       >
         {name}
       </h1>
@@ -82,11 +77,24 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
 export const Merch = () => {
   const { data: productData, isLoading, error } = useProductsQuery();
   const [query, setQuery] = useState("");
-  const search = (data: ProductType[]) => {
-    return data.filter((item) =>
-      item.name.toLowerCase().includes(query.toLowerCase())
-    );
-  };
+  const [noResults, setNoResults] = useState(false);
+
+  const searchedProducts = useMemo(() => {
+    if (!productData) {
+      setNoResults(false);
+      return [];
+    }
+
+    const search = (data: ProductType[]) => {
+      return data.filter((item) =>
+        item.name.toLowerCase().includes(query.toLowerCase())
+      );
+    };
+
+    const results = search(productData);
+    setNoResults(results.length === 0);
+    return results;
+  }, [productData, query]);
 
   if (isLoading) {
     return (
@@ -130,8 +138,14 @@ export const Merch = () => {
           />
         </div>
       </div>
+      {noResults && (
+        <div className="mt-10 text-center">
+          <h2 className="text-2xl text-gray-800">No products found</h2>
+          <p className="text-gray-600">Please try a different search query.</p>
+        </div>
+      )}
       <div className="just mx-5 my-32 grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
-        {search(productData).map((product: any) => (
+        {searchedProducts.map((product: any) => (
           <ProductCard
             key={product.id}
             id={product.id}

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useTrainerQuery } from "../../utilities/queries";
-import Loading from "../Loading";
+import Loading from "../../pages/Loading";
 import { useEffect } from "react";
 
 const TrainerDetail = () => {
