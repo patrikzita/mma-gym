@@ -7,7 +7,7 @@ type AboutCardProps = {
 
 const AboutCard = ({ title, description, Icon }: AboutCardProps) => {
   return (
-    <div className="card-item flex flex-col cursor-pointer gap-3 bg-white justify-center py-6 px-10 text-center items-center mt-12 shadow-2xl hover:text-white">
+    <div className="card-item mt-12 flex cursor-pointer flex-col items-center justify-center gap-3 bg-white py-6 px-10 text-center shadow-2xl hover:text-white">
       <p className="text-2xl font-bold uppercase">{title}</p>
       {Icon}
       <p className="text-xl">{description}</p>

@@ -32,8 +32,8 @@ const About = () => {
   ];
 
   return (
-    <section className="about-section py-5 relative">
-      <div className="flex flex-col justify-center px-5 gap-1 lg:gap-10 lg:flex-row lg:absolute top-0 lg:-top-40 w-full">
+    <section className="about-section relative py-5">
+      <div className="top-0 flex w-full flex-col justify-center gap-1 px-5 lg:absolute lg:-top-40 lg:flex-row lg:gap-10">
         {cardList.map((card) => (
           <AboutCard
             key={card.title}
@@ -44,13 +44,13 @@ const About = () => {
         ))}
       </div>
       <div className="px-5 md:px-32">
-        <div className="flex justify-between mt-5 lg:mt-[10.5rem] px-0 md:px-5">
-          <div className="w-full lg:w-5/12 flex flex-col gap-4 text-center lg:text-left px-10">
+        <div className="mt-5 flex justify-between px-0 md:px-5 lg:mt-[10.5rem]">
+          <div className="flex w-full flex-col gap-4 px-10 text-center lg:w-5/12 lg:text-left">
             <div>
-              <h2 className="text-xl text-secondary font-bold">
+              <h2 className="text-xl font-bold text-secondary">
                 Start your journey
               </h2>
-              <h1 className="text-3xl md:text-5xl font-bold">
+              <h1 className="text-3xl font-bold md:text-5xl">
                 Discover the Ultimate MMA Experience at our Gym
               </h1>
             </div>
@@ -58,27 +58,30 @@ const About = () => {
               Are you ready to transform your life and embark on a journey of
               self-discovery, discipline, and ultimate fitness? Look no further!
             </p>
-            <div className="flex flex-col md:flex-row text-secondary text-center w-full justify-start gap-3">
+            <div className="flex w-full flex-col justify-start gap-3 text-center text-secondary md:flex-row">
               <div className="px-0 md:px-5">
-                <MdSportsGymnastics className="text-6xl lg:text-7xl mx-auto" />
+                <MdSportsGymnastics className="mx-auto text-6xl lg:text-7xl" />
                 <h1 className="text-xl font-medium text-primary">
                   The best boxers
                 </h1>
               </div>
               <div className="border-slate-300 md:border-r-2 md:border-l-2">
-                <GiWeightLiftingUp className="text-6xl lg:text-7xl mx-auto" />
+                <GiWeightLiftingUp className="mx-auto text-6xl lg:text-7xl" />
                 <h1 className="text-xl font-medium text-primary">
                   The modern equipment
                 </h1>
               </div>
               <div>
-                <GiBookCover className="text-6xl lg:text-7xl mx-auto" />
-                <h1 className="text-base md:text-xl font-medium text-primary">
+                <GiBookCover className="mx-auto text-6xl lg:text-7xl" />
+                <h1 className="text-base font-medium text-primary md:text-xl">
                   Education included
                 </h1>
               </div>
             </div>
-            <button onClick={()=>navigate("/contact")} className="text-white bg-primary hover:bg-secondary rounded-lg text-lg px-5 py-2.5 inline-flex items-center gap-3 self-center lg:self-start mt-6">
+            <button
+              onClick={() => navigate("/contact")}
+              className="mt-6 inline-flex items-center gap-3 self-center rounded-lg bg-primary px-5 py-2.5 text-lg text-white hover:bg-secondary lg:self-start"
+            >
               JOIN CLASS NOW
               <MdArrowForward />
             </button>

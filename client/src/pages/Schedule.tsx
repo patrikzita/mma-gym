@@ -13,7 +13,7 @@ const Button = ({ day, selectedDay, setSelectedDay }: ButtonProps) => {
         selectedDay === day
           ? "bg-secondary text-white"
           : "bg-gray-200 text-gray-700"
-      } py-2 px-4 rounded`}
+      } rounded py-2 px-4`}
       onClick={() => setSelectedDay(day)}
     >
       {day}
@@ -198,23 +198,23 @@ type TimeSlotProps = {
 
 const TimeSlot = ({ className, start, end, trainer }: TimeSlotProps) => {
   return (
-    <div className="flex flex-col md:flex-row items-center gap-x-8 gap-y-4 bg-gray-200 px-4 py-6 drop-shadow">
-      <div className="flex flex-col text-center flex-1">
-        <h1 className="text-gray-500 font-medium">Class Name</h1>
-        <h2 className="font-bold text-xl">{className}</h2>
+    <div className="flex flex-col items-center gap-x-8 gap-y-4 bg-gray-200 px-4 py-6 drop-shadow md:flex-row">
+      <div className="flex flex-1 flex-col text-center">
+        <h1 className="font-medium text-gray-500">Class Name</h1>
+        <h2 className="text-xl font-bold">{className}</h2>
       </div>
-      <div className="flex flex-col text-center flex-1">
-        <h1 className="text-gray-500 font-medium">Time</h1>
-        <h2 className="font-bold text-xl">
+      <div className="flex flex-1 flex-col text-center">
+        <h1 className="font-medium text-gray-500">Time</h1>
+        <h2 className="text-xl font-bold">
           {start} - {end}
         </h2>
       </div>
-      <div className="flex flex-col text-center flex-1">
-        <h1 className="text-gray-500 font-medium">Trainer</h1>
-        <h2 className="font-bold text-xl">{trainer}</h2>
+      <div className="flex flex-1 flex-col text-center">
+        <h1 className="font-medium text-gray-500">Trainer</h1>
+        <h2 className="text-xl font-bold">{trainer}</h2>
       </div>
-      <div className="flex flex-col text-center flex-1">
-        <button className="text-white mx-auto bg-gray-600 hover:bg-secondary rounded-full text-lg px-5 py-2.5 ">
+      <div className="flex flex-1 flex-col text-center">
+        <button className="mx-auto rounded-full bg-gray-600 px-5 py-2.5 text-lg text-white hover:bg-secondary ">
           Join Now
         </button>
       </div>
@@ -232,8 +232,8 @@ export const Schedule = () => {
   return (
     <main>
       <SubHeader title="Schedule" />
-      <div className="flex flex-col gap-y-8 items-center my-32">
-        <div className="flex flex-col sm:flex-row flex-nowrap lg:flex-wrap gap-4">
+      <div className="my-32 flex flex-col items-center gap-y-8">
+        <div className="flex flex-col flex-nowrap gap-4 sm:flex-row lg:flex-wrap">
           {DAYS.map((day) => (
             <Button
               key={day}
@@ -243,7 +243,7 @@ export const Schedule = () => {
             />
           ))}
         </div>
-        <div className="w-3/4 flex flex-col gap-y-4">
+        <div className="flex w-3/4 flex-col gap-y-4">
           {selectedSchedule?.daySchedule.map((timeSlot, index) => (
             <TimeSlot key={timeSlot.className + index} {...timeSlot} />
           ))}
@@ -253,4 +253,4 @@ export const Schedule = () => {
   );
 };
 
-export default Schedule
+export default Schedule;

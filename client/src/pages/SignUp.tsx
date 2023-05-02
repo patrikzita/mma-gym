@@ -27,8 +27,8 @@ const SignUp = () => {
     validationSchema: toFormikValidationSchema(Schema),
   });
   return (
-    <main className="flex bg-gray-100 lg:bg-white justify-center pt-32 mb-32 h-1000">
-      <div className="w-fit pb-10 px-5 bg-gray-100 md:p-5 lg:p-10 h-fit flex flex-col md:flex-row gap-16 lg:border-4">
+    <main className="h-1000 mb-32 flex justify-center bg-gray-100 pt-32 lg:bg-white">
+      <div className="flex h-fit w-fit flex-col gap-16 bg-gray-100 px-5 pb-10 md:flex-row md:p-5 lg:border-4 lg:p-10">
         <img src={IMG} alt="" className="w-96" />
         <form>
           <div className="flex flex-row items-center justify-center lg:justify-start">
@@ -75,17 +75,17 @@ const SignUp = () => {
             />
           </div>
 
-          <div className="text-center lg:text-left mt-6">
+          <div className="mt-6 text-center lg:text-left">
             <button
               type="button"
-              className="inline-block rounded bg-blue-500 px-7 pt-3 pb-2.5 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+              className="hover:bg-primary-600 focus:bg-primary-600 active:bg-primary-700 inline-block rounded bg-blue-500 px-7 pt-3 pb-2.5 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
             >
               Register
             </button>
           </div>
           <p className="mt-2 mb-0 pt-1 text-sm font-semibold">
             Already have an account?{" "}
-            <Link to="/signin" className="text-secondary font-bold">
+            <Link to="/signin" className="font-bold text-secondary">
               Login
             </Link>
           </p>

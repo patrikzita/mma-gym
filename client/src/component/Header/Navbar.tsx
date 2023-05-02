@@ -33,18 +33,18 @@ const CartOrderItem = ({ id }: CartOrderItemProps) => {
 
   return (
     <div
-      className="flex items-center w-full justify-between px-4 py-2 text-sm font-medium cursor-pointer text-gray-600 hover:bg-gray-100"
+      className="flex w-full cursor-pointer items-center justify-between px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100"
       onClick={() => navigate(`/merch/${id}`)}
     >
-      <div className="flex justify-center flex-1">
+      <div className="flex flex-1 justify-center">
         <img src={data.img} alt={data.name} width={50} />
       </div>
-      <p className="flex justify-center flex-1">{data.name}</p>
-      <p className="flex justify-center flex-1">
+      <p className="flex flex-1 justify-center">{data.name}</p>
+      <p className="flex flex-1 justify-center">
         {formatCurrency(data.price, "usd")}
       </p>
       <button
-        className="p-1 text-black rounded-full hover:text-secondary hover:bg-white text-xs"
+        className="rounded-full p-1 text-xs text-black hover:bg-white hover:text-secondary"
         onClick={(e) => {
           e.stopPropagation();
           removeCartItem(id);
@@ -113,13 +113,13 @@ const Navbar = () => {
   ];
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 py-6 px-12 text-white bg-black">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black py-6 px-12 text-white">
         <div className="flex items-center justify-between">
           <Link to="/" onClick={scrollToTop}>
             <img
               src={Logo}
               alt="MMA gym logo"
-              className="w-12 md:w-16 h-auto"
+              className="h-auto w-12 md:w-16"
             />
           </Link>
           <div className="hidden lg:block">
@@ -128,7 +128,7 @@ const Navbar = () => {
                 <Link
                   key={item.title}
                   to={item.path}
-                  className="text-lg text-gray-300 hover:text-secondary mr-4"
+                  className="mr-4 text-lg text-gray-300 hover:text-secondary"
                   onClick={scrollToTop}
                 >
                   {item.title}
@@ -136,23 +136,23 @@ const Navbar = () => {
               ))}
             </div>
           </div>
-          <div className="flex gap-5 items-center">
+          <div className="flex items-center gap-5">
             <div>
               <div
                 ref={cartButtonRef}
-                className="inline-block cursor-pointer text-lg px-4 py-2 leading-none text-whitelg:mt-0 relative hover:text-secondary"
+                className="text-whitelg:mt-0 relative inline-block cursor-pointer px-4 py-2 text-lg leading-none hover:text-secondary"
                 onClick={toggleCartMenu}
               >
                 <FaShoppingBag />
                 {cartItems.length !== 0 && (
-                  <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                     {cartItems.length}
                   </span>
                 )}
               </div>
               <Link
                 to="/signin"
-                className="inline-block text-lg px-4 py-2 leading-none text-white hover:text-secondary  lg:mt-0"
+                className="inline-block px-4 py-2 text-lg leading-none text-white hover:text-secondary  lg:mt-0"
                 onClick={scrollToTop}
               >
                 <FaUserAlt />
@@ -160,13 +160,13 @@ const Navbar = () => {
             </div>
             <Link
               to="/contact"
-              className="hidden md:flex items-center gap-2 text-sm px-4 py-2 leading-none border rounded text-white border-white hover:text-secondary hover:border-secondary  lg:mt-0"
+              className="hidden items-center gap-2 rounded border border-white px-4 py-2 text-sm leading-none text-white hover:border-secondary hover:text-secondary md:flex  lg:mt-0"
             >
               <MdAddCircleOutline className="text-3xl text-secondary hover:rotate-[360deg] hover:duration-1000 " />
               <h3>Join Class Now</h3>
             </Link>
             <button
-              className="block lg:hidden text-white text-2xl hover:text-secondary"
+              className="block text-2xl text-white hover:text-secondary lg:hidden"
               onClick={hamburgerMenu}
             >
               <GiHamburgerMenu />
@@ -177,19 +177,19 @@ const Navbar = () => {
         <div
           className={`${
             hamburger ? "translate-x-0" : "-translate-x-full"
-          } transition-all duration-300 ease-in-out absolute top-0 left-0 w-full h-screen bg-white z-50`}
+          } absolute top-0 left-0 z-50 h-screen w-full bg-white transition-all duration-300 ease-in-out`}
         >
           <div className="flex justify-end px-4 py-2">
             <button className="cursor-pointer" onClick={hamburgerMenu}>
-              <MdClose className="text-black text-3xl hover:text-secondary" />
+              <MdClose className="text-3xl text-black hover:text-secondary" />
             </button>
           </div>
-          <div className="flex flex-col h-screen items-center md:justify-start justify-center gap-2">
+          <div className="flex h-screen flex-col items-center justify-center gap-2 md:justify-start">
             {PATHS.map((item) => (
               <Link
                 key={item.title}
                 to={item.path}
-                className="text-3xl font-bold text-black my-4 hover:text-secondary"
+                className="my-4 text-3xl font-bold text-black hover:text-secondary"
                 onClick={hamburgerMenu}
               >
                 {item.title}
@@ -200,21 +200,21 @@ const Navbar = () => {
       </nav>
       {cartMenuOpen && (
         <div
-          className="fixed top-16 mt-4 w-full h-1/2 bg-white rounded-lg shadow-xl z-50 p-3
-          sm:top-16 sm:right-2 sm:w-64 sm:h-auto
+          className="fixed top-16 z-50 mt-4 h-1/2 w-full rounded-lg bg-white p-3 shadow-xl
+          sm:top-16 sm:right-2 sm:h-auto sm:w-64
           md:top-16 md:right-64 md:w-64
           lg:right-36 lg:w-96
           "
           ref={cartMenuRef}
         >
           {cartItems.length === 0 ? (
-            <div className="flex items-center justify-center h-32 ">
+            <div className="flex h-32 items-center justify-center ">
               <p className="text-center text-gray-500">Your Cart is empty...</p>
               <p className="text-xl">🙄</p>
             </div>
           ) : (
-            <div className="flex flex-col justify-between gap-3 h-full">
-              <div className="flex justify-between text-black pb-2 border-b-2 text-xl">
+            <div className="flex h-full flex-col justify-between gap-3">
+              <div className="flex justify-between border-b-2 pb-2 text-xl text-black">
                 <p>Cart</p>
                 <button
                   className=" hover:text-secondary"
@@ -223,13 +223,13 @@ const Navbar = () => {
                   <AiOutlineClose />
                 </button>
               </div>
-              <div className="flex flex-col justify-between w-full h-full gap-y-3">
+              <div className="flex h-full w-full flex-col justify-between gap-y-3">
                 <div>
                   {cartItems.map((item) => (
                     <CartOrderItem key={item.id} id={item.id} />
                   ))}
                 </div>
-                <button className="flex w-full text-white font-bold justify-center bg-secondary py-3 rounded-md">
+                <button className="flex w-full justify-center rounded-md bg-secondary py-3 font-bold text-white">
                   Checkout
                 </button>
               </div>

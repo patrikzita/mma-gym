@@ -1,22 +1,22 @@
 const TrainerCardSkeleton = () => {
   return (
-    <div className="box-desc relative cursor-pointer w-fit h-fit">
+    <div className="box-desc relative h-fit w-fit cursor-pointer">
       <div
         style={{ width: "20rem", height: "25rem" }}
-        className="relative z-10 bottom-10 bg-gray-200 animate-pulse"
+        className="relative bottom-10 z-10 animate-pulse bg-gray-200"
       />
       <div
         style={{ width: "20rem", height: "3rem" }}
-        className="absolute top-[3rem] bg-gray-200 animate-pulse"
+        className="absolute top-[3rem] animate-pulse bg-gray-200"
       />
-      <div className="text-primary bg-white w-full text-center shadow-xl absolute z-20 pt-2 pb-5 bottom-[0]">
-        <div className="h-5 w-3/4 mx-auto mt-2 bg-gray-200 animate-pulse" />
-        <div className="h-4 w-1/2 mx-auto mt-2 bg-gray-200 animate-pulse" />
-        <div className="flex gap-4 text-gray-500 w-full justify-center mt-3 text-xl">
-          <div className="h-6 w-6 bg-gray-200 rounded-full animate-pulse" />
-          <div className="h-6 w-6 bg-gray-200 rounded-full animate-pulse" />
-          <div className="h-6 w-6 bg-gray-200 rounded-full animate-pulse" />
-          <div className="h-6 w-6 bg-gray-200 rounded-full animate-pulse" />
+      <div className="absolute bottom-[0] z-20 w-full bg-white pt-2 pb-5 text-center text-primary shadow-xl">
+        <div className="mx-auto mt-2 h-5 w-3/4 animate-pulse bg-gray-200" />
+        <div className="mx-auto mt-2 h-4 w-1/2 animate-pulse bg-gray-200" />
+        <div className="mt-3 flex w-full justify-center gap-4 text-xl text-gray-500">
+          <div className="h-6 w-6 animate-pulse rounded-full bg-gray-200" />
+          <div className="h-6 w-6 animate-pulse rounded-full bg-gray-200" />
+          <div className="h-6 w-6 animate-pulse rounded-full bg-gray-200" />
+          <div className="h-6 w-6 animate-pulse rounded-full bg-gray-200" />
         </div>
       </div>
     </div>

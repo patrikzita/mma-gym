@@ -35,7 +35,7 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
   };
 
   return (
-    <div className="flex flex-col w-fit p-5 items-center gap-y-8 mx-auto hover:border-2">
+    <div className="mx-auto flex w-fit flex-col items-center gap-y-8 p-5 hover:border-2">
       <img
         src={img}
         alt=""
@@ -46,7 +46,7 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
         }}
       />
       <h1
-        className="text-md text-blue-400 font-medium cursor-pointer hover:text-blue-300"
+        className="text-md cursor-pointer font-medium text-blue-400 hover:text-blue-300"
         onClick={() => {
           scrollToTop();
           navigate(`/merch/${id}`);
@@ -54,17 +54,17 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
       >
         {name}
       </h1>
-      <div className="flex flex-col text-center gap-y-2">
-        <h2 className="text-xl text-red-500 font-medium">
+      <div className="flex flex-col gap-y-2 text-center">
+        <h2 className="text-xl font-medium text-red-500">
           {formatCurrency(price, "USD")}
         </h2>
         {isProductAdded ? (
-          <div className="flex items-center font-bold bg-green-400 text-white gap-x-2 px-2 py-1 hover:drop-shadow-sm">
+          <div className="flex items-center gap-x-2 bg-green-400 px-2 py-1 font-bold text-white hover:drop-shadow-sm">
             Added to Cart
           </div>
         ) : (
           <button
-            className="flex items-center border-2 border-gray-100 gap-x-2 px-2 py-1 hover:drop-shadow-sm"
+            className="flex items-center gap-x-2 border-2 border-gray-100 px-2 py-1 hover:drop-shadow-sm"
             onClick={(e) => {
               e.stopPropagation();
               increaseCartQuantity(id);
@@ -82,28 +82,29 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
 export const Merch = () => {
   const { data: productData, isLoading, error } = useProductsQuery();
   const [query, setQuery] = useState("");
-
   const search = (data: ProductType[]) => {
-    return data.filter((item) => item.name.toLowerCase().includes(query));
+    return data.filter((item) =>
+      item.name.toLowerCase().includes(query.toLowerCase())
+    );
   };
 
   if (isLoading) {
     return (
       <main>
         <SubHeader title="Merch" />
-        <div className="container flex justify-center mx-auto">
-          <div className="flex border-2 rounded-2xl w-full mx-2 md:w-3/5 mt-5">
-            <div className="flex items-center justify-center px-4 border-r ">
+        <div className="container mx-auto flex justify-center">
+          <div className="mx-2 mt-5 flex w-full rounded-2xl border-2 md:w-3/5">
+            <div className="flex items-center justify-center border-r px-4 ">
               <AiOutlineSearch />
             </div>
             <input
               type="text"
-              className=" w-full border-0 rounded-r-2xl outline-0"
+              className=" w-full rounded-r-2xl border-0 outline-0"
               placeholder="Search..."
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-5 my-32 just">
+        <div className="just mx-5 my-32 grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
           <ProductCardSkeleton />
           <ProductCardSkeleton />
           <ProductCardSkeleton />
@@ -116,20 +117,20 @@ export const Merch = () => {
   return (
     <main>
       <SubHeader title="Merch" />
-      <div className="container flex justify-center mx-auto">
-        <div className="flex border-2 rounded-2xl w-full mx-2 md:w-3/5 mt-5">
-          <div className="flex items-center justify-center px-4 border-r ">
+      <div className="container mx-auto flex justify-center">
+        <div className="mx-2 mt-5 flex w-full rounded-2xl border-2 md:w-3/5">
+          <div className="flex items-center justify-center border-r px-4 ">
             <AiOutlineSearch />
           </div>
           <input
             type="text"
-            className=" w-full border-0 rounded-r-2xl outline-0"
+            className=" w-full rounded-r-2xl border-0 outline-0"
             placeholder="Search..."
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-5 my-32 just">
+      <div className="just mx-5 my-32 grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4">
         {search(productData).map((product: any) => (
           <ProductCard
             key={product.id}

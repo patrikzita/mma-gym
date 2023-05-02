@@ -2,9 +2,9 @@ import { BsFillSendFill } from "react-icons/bs";
 
 const Newsletter = () => {
   return (
-    <section className="grid lg:grid-cols-3 lg:items-center gap-y-5 bg-orange-400 px-8 pt-4 text-center">
+    <section className="grid gap-y-5 bg-orange-400 px-8 pt-4 text-center lg:grid-cols-3 lg:items-center">
       <div>
-        <h2 className="font-bold text-2xl md:text-3xl text-white">
+        <h2 className="text-2xl font-bold text-white md:text-3xl">
           The latest from the world of healthy life
         </h2>
         <p className="text-white">
@@ -12,24 +12,24 @@ const Newsletter = () => {
         </p>
       </div>
       <div className="flex flex-col items-center gap-2">
-        <div className="flex border-2 rounded-2xl w-full mx-2 md:w-3/5 mt-5">
+        <div className="mx-2 mt-5 flex w-full rounded-2xl border-2 md:w-3/5">
           <input
             type="text"
-            className="w-full border-0 rounded-l-2xl"
+            className="w-full rounded-l-2xl border-0"
             placeholder="Enter your email..."
           />
           <button className="flex items-center justify-center px-4">
             <BsFillSendFill className="text-white" />
-            <span className="relative flex h-2 w-2  -top-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-700 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-700 "></span>
+            <span className="relative -top-2 flex h-2  w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-700 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-red-700 "></span>
             </span>
           </button>
         </div>
-        <div className="flex gap-x-4 items-center">
+        <div className="flex items-center gap-x-4">
           <input
             type="checkbox"
-            className="bg-red-100 border-red-300 text-red-500 focus:ring-red-200"
+            className="border-red-300 bg-red-100 text-red-500 focus:ring-red-200"
           />
           <p>I agree to the processing of personal data</p>
         </div>

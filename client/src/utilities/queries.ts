@@ -16,15 +16,15 @@ export function useProductsQuery() {
   });
 }
 
-export function useTrainersQuery(count?: number){
+export function useTrainersQuery(count?: number) {
   return useQuery({
     queryKey: ["trainers"],
     queryFn: () => getTrainersDataFetch(count),
-  })
+  });
 }
-export function useTrainerQuery(id: string){
+export function useTrainerQuery(id: string) {
   return useQuery({
     queryKey: ["trainer", id],
     queryFn: () => getTrainerDataFetch(id),
-  })
+  });
 }

@@ -29,24 +29,24 @@ const TrainerCard = ({
   const navigate = useNavigate();
   return (
     <div
-      className="box-desc relative cursor-pointer w-fit h-fit"
+      className="box-desc relative h-fit w-fit cursor-pointer"
       onClick={() => navigate(`/trainers/${id}`)}
     >
       <img
         src={img}
         alt={name}
         style={{ width: "20rem" }}
-        className="relative z-10 bottom-10 grayscale hover:grayscale-0 transitation duration-500 hover:ease-in-out"
+        className="transitation relative bottom-10 z-10 grayscale duration-500 hover:grayscale-0 hover:ease-in-out"
       />
       <img
         src="/images/trainer-bg.png"
         alt="Background of fighter"
         className="absolute top-[3rem]"
       />
-      <div className="text-primary bg-white w-full text-center shadow-xl absolute z-20 pt-2 pb-5 bottom-[0]">
+      <div className="absolute bottom-[0] z-20 w-full bg-white pt-2 pb-5 text-center text-primary shadow-xl">
         <h3 className="text-xl font-bold">{name}</h3>
         <p className="text-base font-medium">{focus}</p>
-        <div className="flex gap-4 text-gray-500 w-full justify-center mt-3 text-xl">
+        <div className="mt-3 flex w-full justify-center gap-4 text-xl text-gray-500">
           <a
             href={facebookUrl}
             target="_blank"
@@ -90,12 +90,12 @@ const Trainers = () => {
 
   if (isLoading)
     return (
-      <section className="trainers-section text-center h-3/6 text-white pt-12 pb-24 md:px-12 lg:px-2">
-        <h1 className="text-3xl md:text-6xl font-black mt-6">Our trainers</h1>
-        <p className="text-white text-xl mt-8">
+      <section className="trainers-section h-3/6 pt-12 pb-24 text-center text-white md:px-12 lg:px-2">
+        <h1 className="mt-6 text-3xl font-black md:text-6xl">Our trainers</h1>
+        <p className="mt-8 text-xl text-white">
           The former champions help you to succeed in any discipline.
         </p>
-        <div className="flex flex-col items-center gap-y-32 mt-16 md:flex-row md:justify-center md:gap-x-12">
+        <div className="mt-16 flex flex-col items-center gap-y-32 md:flex-row md:justify-center md:gap-x-12">
           <TrainerCardSkeleton />
           <TrainerCardSkeleton />
           <TrainerCardSkeleton />
@@ -104,12 +104,12 @@ const Trainers = () => {
     );
   if (!data) return <div>Error</div>;
   return (
-    <section className="trainers-section text-center h-3/6 text-white pt-12 pb-24 md:px-12 lg:px-2">
-      <h1 className="text-3xl md:text-6xl font-black mt-6">Our trainers</h1>
-      <p className="text-white text-xl mt-8">
+    <section className="trainers-section h-3/6 pt-12 pb-24 text-center text-white md:px-12 lg:px-2">
+      <h1 className="mt-6 text-3xl font-black md:text-6xl">Our trainers</h1>
+      <p className="mt-8 text-xl text-white">
         The former champions help you to succeed in any discipline.
       </p>
-      <div className="flex flex-col items-center gap-y-32 mt-16 md:flex-row md:justify-center md:gap-x-12">
+      <div className="mt-16 flex flex-col items-center gap-y-32 md:flex-row md:justify-center md:gap-x-12">
         {data.map((trainer: any) => (
           <TrainerCard
             key={trainer.name}
