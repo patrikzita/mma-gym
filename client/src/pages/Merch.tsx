@@ -6,6 +6,7 @@ import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { useProductsQuery } from "../utilities/queries";
+import ProductCardSkeleton from "../component/Products/ProductCardSkeleton";
 
 type ProductType = {
   id: string;
@@ -79,17 +80,39 @@ const ProductCard = ({ id, name, img, price }: ProductCardProps) => {
 };
 
 export const Merch = () => {
-  const { data: productData, status } = useProductsQuery();
+  const { data: productData, isLoading, error } = useProductsQuery();
   const [query, setQuery] = useState("");
 
   const search = (data: ProductType[]) => {
     return data.filter((item) => item.name.toLowerCase().includes(query));
   };
 
-  if (status === "loading") {
-    return <h1>Loading...</h1>;
+  if (isLoading) {
+    return (
+      <main>
+        <SubHeader title="Merch" />
+        <div className="container flex justify-center mx-auto">
+          <div className="flex border-2 rounded-2xl w-full mx-2 md:w-3/5 mt-5">
+            <div className="flex items-center justify-center px-4 border-r ">
+              <AiOutlineSearch />
+            </div>
+            <input
+              type="text"
+              className=" w-full border-0 rounded-r-2xl outline-0"
+              placeholder="Search..."
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-5 my-32 just">
+          <ProductCardSkeleton />
+          <ProductCardSkeleton />
+          <ProductCardSkeleton />
+          <ProductCardSkeleton />
+        </div>
+      </main>
+    );
   }
-  if (status === "error") return <h1>Not connected to API</h1>;
+  if (error) return <h1>Not connected to API</h1>;
   return (
     <main>
       <SubHeader title="Merch" />

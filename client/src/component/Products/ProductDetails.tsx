@@ -8,12 +8,13 @@ import { useProductQuery } from "../../utilities/queries";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import Newsletter from "../Newsletter/Newsletter";
 import Loading from "../Loading";
+import ProductDetailSkeleton from "./ProductDetailSkeleton";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { increaseCartQuantity, cartItems } = useShoppingCart();
-  const { data: productData, status } = useProductQuery(id as string);
+  const { data: productData, isLoading } = useProductQuery(id as string);
 
   const handleAddToCart = () => {
     const isProductAdded = cartItems.some((item) => item.id === id);
@@ -22,15 +23,14 @@ const ProductDetails = () => {
     if (isProductAdded) {
       toast("This item is already in Cart.");
     } else {
-      toast.success("Product was added to your Cart")
+      toast.success("Product was added to your Cart");
     }
   };
 
-  
-  if (status === "loading") {
-    return <Loading />;
+  if (isLoading) {
+    return <ProductDetailSkeleton />;
   }
-  if (status === "error") return <h1>Not connected to API</h1>;
+  if (!productData) return <h1>Not connected to API</h1>;
   return (
     <main>
       <section className="w-full h-fit md:w-11/12 md:m-auto">

@@ -3,6 +3,7 @@ import { MdEmail } from "react-icons/md";
 import { useTrainersQuery } from "../../utilities/queries";
 import Loading from "../Loading";
 import { useNavigate } from "react-router-dom";
+import TrainerCardSkeleton from "./TrainersSkeleton";
 
 type TrainerCardProps = {
   id: string;
@@ -46,16 +47,36 @@ const TrainerCard = ({
         <h3 className="text-xl font-bold">{name}</h3>
         <p className="text-base font-medium">{focus}</p>
         <div className="flex gap-4 text-gray-500 w-full justify-center mt-3 text-xl">
-          <a href={facebookUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+          <a
+            href={facebookUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
             <FaFacebook className="hover:text-secondary" />
           </a>
-          <a href={instagramUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+          <a
+            href={instagramUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
             <FaInstagram className="hover:text-secondary" />
           </a>
-          <a href={twitterUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+          <a
+            href={twitterUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
             <FaTwitter className="hover:text-secondary" />
           </a>
-          <a href={`mailto:${emailUrl}`} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>
+          <a
+            href={`mailto:${emailUrl}`}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
             <MdEmail className="hover:text-secondary" />
           </a>
         </div>
@@ -67,7 +88,20 @@ const TrainerCard = ({
 const Trainers = () => {
   const { data, isLoading } = useTrainersQuery(3);
 
-  if (isLoading) return <Loading />;
+  if (isLoading)
+    return (
+      <section className="trainers-section text-center h-3/6 text-white pt-12 pb-24 md:px-12 lg:px-2">
+        <h1 className="text-3xl md:text-6xl font-black mt-6">Our trainers</h1>
+        <p className="text-white text-xl mt-8">
+          The former champions help you to succeed in any discipline.
+        </p>
+        <div className="flex flex-col items-center gap-y-32 mt-16 md:flex-row md:justify-center md:gap-x-12">
+          <TrainerCardSkeleton />
+          <TrainerCardSkeleton />
+          <TrainerCardSkeleton />
+        </div>
+      </section>
+    );
   if (!data) return <div>Error</div>;
   return (
     <section className="trainers-section text-center h-3/6 text-white pt-12 pb-24 md:px-12 lg:px-2">
