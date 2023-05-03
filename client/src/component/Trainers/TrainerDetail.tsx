@@ -2,17 +2,17 @@ import { useParams } from "react-router-dom";
 import { useTrainerQuery } from "../../utilities/queries";
 import Loading from "../../pages/Loading";
 import { useEffect } from "react";
+import TrainerDetailSkeleton from "./TrainerDetailSkeleton";
 
 const TrainerDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useTrainerQuery(id as string);
 
-  console.log(data);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <TrainerDetailSkeleton />;
   if (!data) return <div>Error</div>;
 
   return (

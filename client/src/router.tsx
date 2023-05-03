@@ -6,6 +6,8 @@ import NavLayout from "./NavLayout";
 import { ROUTES } from "./utilities/routes";
 
 const lazyLoad = (component: string, path = "pages") => {
+  console.log(`./${path}/${component}`);
+
   return lazy(() => import(`./${path}/${component}`));
 };
 

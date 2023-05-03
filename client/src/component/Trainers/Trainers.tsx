@@ -105,7 +105,7 @@ const Trainers = () => {
       </p>
       <div className="mt-16 flex flex-col items-center gap-y-32 md:flex-row md:justify-center md:gap-x-12">
         {data.map((trainer: TrainerType) => (
-          <TrainerCard trainer={trainer} />
+          <TrainerCard key={trainer.id} trainer={trainer} />
         ))}
       </div>
     </section>
