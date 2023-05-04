@@ -8,7 +8,7 @@ import { ROUTES } from "./utilities/routes";
 const lazyLoad = (component: string, path = "pages") => {
   console.log(`./${path}/${component}`);
 
-  return lazy(() => import(`./${path}/${component}`));
+  return lazy(() => import(`./${path}/${component}.tsx`));
 };
 
 const Home = lazyLoad("Home");
