@@ -4,15 +4,17 @@ import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import NavLayout from "./NavLayout";
 import Loading from "./pages/Loading";
 import { ROUTES } from "./utilities/routes";
+import Home from "./pages/Home";
 
-const Home = lazy(() => import("./pages/Home"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const SignIn = lazy(() => import("./pages/SignIn"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const Merch = lazy(() => import("./pages/Merch"));
 const Schedule = lazy(() => import("./pages/Schedule"));
-const ProductDetails = lazy(() => import("./component/Products/ProductDetails"));
+const ProductDetails = lazy(
+  () => import("./component/Products/ProductDetails")
+);
 const TrainerDetail = lazy(() => import("./component/Trainers/TrainerDetail"));
 const NotFound = lazy(() => import("./component/NotFound/NotFound"));
 
