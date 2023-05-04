@@ -1,26 +1,20 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import Loading from "./pages/Loading";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import NavLayout from "./NavLayout";
+import Loading from "./pages/Loading";
 import { ROUTES } from "./utilities/routes";
 
-const lazyLoad = (component: string, path = "pages") => {
-  console.log(`./${path}/${component}`);
-
-  return lazy(() => import(`./${path}/${component}.tsx`));
-};
-
-const Home = lazyLoad("Home");
-const SignUp = lazyLoad("SignUp");
-const SignIn = lazyLoad("SignIn");
-const ContactUs = lazyLoad("ContactUs");
-const Pricing = lazyLoad("Pricing");
-const Merch = lazyLoad("Merch");
-const Schedule = lazyLoad("Schedule");
-const ProductDetails = lazyLoad("ProductDetails", "component/Products");
-const TrainerDetail = lazyLoad("TrainerDetail", "component/Trainers");
-const NotFound = lazyLoad("NotFound", "component/NotFound");
+const Home = lazy(() => import("./pages/Home"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const SignIn = lazy(() => import("./pages/SignIn"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const Merch = lazy(() => import("./pages/Merch"));
+const Schedule = lazy(() => import("./pages/Schedule"));
+const ProductDetails = lazy(() => import("./component/Products/ProductDetails"));
+const TrainerDetail = lazy(() => import("./component/Trainers/TrainerDetail"));
+const NotFound = lazy(() => import("./component/NotFound/NotFound"));
 
 export const router = createBrowserRouter([
   {
